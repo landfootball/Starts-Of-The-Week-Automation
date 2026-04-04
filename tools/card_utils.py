@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
 ROOT = Path(__file__).parent.parent
@@ -16,17 +16,18 @@ BRANDING_DIR = ROOT / "branding assets"
 FONTS_DIR = BRANDING_DIR / "fonts"
 TEAM_MAP_PATH = ROOT / "config" / "team_map.json"
 
-# ── Card dimensions ────────────────────────────────────────────────────────────
-CARD_W = 650
-CARD_H = 900
-OUTER_PAD = 32          # space between card and image edge
-IMG_W = CARD_W + OUTER_PAD * 2
-IMG_H = CARD_H + OUTER_PAD * 2
+# ── Resolution scale (2 = crisp on modern screens) ────────────────────────────
+SCALE = 2
+
+# ── Card dimensions (logical units × SCALE = actual pixels) ───────────────────
+CARD_W = 650 * SCALE        # 1300px
+OUTER_PAD = 32 * SCALE      # 64px
+# CARD_H is dynamic — calculated per card based on content
 
 # ── Palette ────────────────────────────────────────────────────────────────────
 BG_DARK = "#1A1A1A"
 CARD_BG = "#F5F0E8"
-CARD_BG_ALT = "#EDE8DC"   # alternating row tint
+CARD_BG_ALT = "#EDE8DC"
 DIVIDER = "#D8D0C0"
 GRAY_LABEL = "#888888"
 GRAY_SUBTITLE = "#666666"
@@ -63,8 +64,9 @@ _font_cache: dict[str, ImageFont.FreeTypeFont] = {}
 
 
 def load_font(family: str, weight: str, size: int) -> ImageFont.FreeTypeFont:
-    """Load a font, caching by (family, weight, size)."""
-    cache_key = f"{family}-{weight}-{size}"
+    """Load a font at size × SCALE, cached."""
+    scaled_size = size * SCALE
+    cache_key = f"{family}-{weight}-{scaled_size}"
     if cache_key in _font_cache:
         return _font_cache[cache_key]
 
@@ -78,11 +80,10 @@ def load_font(family: str, weight: str, size: int) -> ImageFont.FreeTypeFont:
         raise ValueError(f"Unknown font family: {family}")
 
     if not path.exists():
-        # Fallback: walk the font dir for any .ttf/.otf
         candidates = list(TOMMY_SOFT_DIR.glob("*.otf")) + list(SOURCE_SERIF_DIR.glob("*.ttf"))
         path = candidates[0] if candidates else None
 
-    font = ImageFont.truetype(str(path), size) if path else ImageFont.load_default()
+    font = ImageFont.truetype(str(path), scaled_size) if path else ImageFont.load_default()
     _font_cache[cache_key] = font
     return font
 
@@ -93,10 +94,7 @@ def hex_to_rgb(hex_color: str) -> tuple[int, int, int]:
 
 
 def rank_color(rank: int, total: int = 32) -> str:
-    """
-    Return badge color based on rank.
-    Rank 1 = most allowed = best matchup for fantasy starters = GREEN.
-    """
+    """Rank 1 = most allowed = best matchup = GREEN."""
     if rank <= 10:
         return RANK_GREEN
     elif rank <= 22:
@@ -111,7 +109,7 @@ def load_team_map() -> dict:
 
 
 def load_team_logo(team_name: str, size: tuple[int, int] = (80, 80)) -> Image.Image | None:
-    """Load and resize a team logo. Returns None if not found."""
+    scaled_size = (size[0] * SCALE, size[1] * SCALE)
     team_map = load_team_map()
     info = team_map.get(team_name)
     if not info:
@@ -121,54 +119,51 @@ def load_team_logo(team_name: str, size: tuple[int, int] = (80, 80)) -> Image.Im
         return None
     try:
         img = Image.open(logo_path).convert("RGBA")
-        img.thumbnail(size, Image.LANCZOS)
+        img.thumbnail(scaled_size, Image.LANCZOS)
         return img
     except Exception:
         return None
 
 
 def load_fantasylan_watermark(max_width: int = 160) -> Image.Image | None:
-    """Load the FantasyLand beige transparent watermark logo."""
     watermark_path = BRANDING_DIR / "logos" / "FantasyLand Branding_Second Beige Transparent Logo.png"
     if not watermark_path.exists():
         return None
     try:
         img = Image.open(watermark_path).convert("RGBA")
-        # Scale proportionally
-        ratio = max_width / img.width
+        scaled_max = max_width * SCALE
+        ratio = scaled_max / img.width
         new_h = int(img.height * ratio)
-        img = img.resize((max_width, new_h), Image.LANCZOS)
+        img = img.resize((scaled_max, new_h), Image.LANCZOS)
         return img
     except Exception:
         return None
 
 
-def make_card_canvas() -> tuple[Image.Image, ImageDraw.ImageDraw, tuple[int, int]]:
+def make_card_canvas(card_h: int) -> tuple[Image.Image, ImageDraw.ImageDraw, tuple[int, int]]:
     """
-    Create the base image: dark outer background with a cream card centered.
+    Create the base image with a dynamic card height.
+    card_h: actual pixel height of the card (already scaled).
+    """
+    img_w = CARD_W + OUTER_PAD * 2
+    img_h = card_h + OUTER_PAD * 2
 
-    Returns:
-        (image, draw, card_origin) where card_origin is (x, y) of the card's top-left.
-    """
-    img = Image.new("RGB", (IMG_W, IMG_H), BG_DARK)
+    img = Image.new("RGB", (img_w, img_h), BG_DARK)
     draw = ImageDraw.Draw(img)
 
-    # Draw card with slight shadow
-    shadow_offset = 6
+    shadow_offset = 8
     shadow_rect = [
         OUTER_PAD + shadow_offset,
         OUTER_PAD + shadow_offset,
         OUTER_PAD + CARD_W + shadow_offset,
-        OUTER_PAD + CARD_H + shadow_offset,
+        OUTER_PAD + card_h + shadow_offset,
     ]
-    draw.rounded_rectangle(shadow_rect, radius=16, fill="#0A0A0A")
+    draw.rounded_rectangle(shadow_rect, radius=24, fill="#0A0A0A")
 
-    # Card background
-    card_rect = [OUTER_PAD, OUTER_PAD, OUTER_PAD + CARD_W, OUTER_PAD + CARD_H]
-    draw.rounded_rectangle(card_rect, radius=16, fill=CARD_BG)
+    card_rect = [OUTER_PAD, OUTER_PAD, OUTER_PAD + CARD_W, OUTER_PAD + card_h]
+    draw.rounded_rectangle(card_rect, radius=24, fill=CARD_BG)
 
-    card_origin = (OUTER_PAD, OUTER_PAD)
-    return img, draw, card_origin
+    return img, draw, (OUTER_PAD, OUTER_PAD)
 
 
 def draw_pill_badge(
@@ -180,19 +175,17 @@ def draw_pill_badge(
     font: ImageFont.FreeTypeFont,
     padding: tuple[int, int] = (14, 6),
 ) -> int:
-    """
-    Draw a pill-shaped badge with text. Returns the right edge x coordinate.
-    """
+    scaled_pad = (padding[0] * SCALE, padding[1] * SCALE)
     bbox = draw.textbbox((0, 0), text, font=font)
     text_w = bbox[2] - bbox[0]
     text_h = bbox[3] - bbox[1]
-    pill_w = text_w + padding[0] * 2
-    pill_h = text_h + padding[1] * 2
+    pill_w = text_w + scaled_pad[0] * 2
+    pill_h = text_h + scaled_pad[1] * 2
 
     rect = [x, y, x + pill_w, y + pill_h]
     draw.rounded_rectangle(rect, radius=pill_h // 2, fill=color)
     draw.text(
-        (x + padding[0], y + padding[1] - bbox[1]),
+        (x + scaled_pad[0], y + scaled_pad[1] - bbox[1]),
         text,
         font=font,
         fill=WHITE,
@@ -201,16 +194,15 @@ def draw_pill_badge(
 
 
 def draw_divider(draw: ImageDraw.ImageDraw, card_x: int, y: int, width: int = CARD_W) -> None:
-    """Draw a horizontal divider line inside the card."""
+    pad = 24 * SCALE
     draw.line(
-        [(card_x + 24, y), (card_x + width - 24, y)],
+        [(card_x + pad, y), (card_x + width - pad, y)],
         fill=DIVIDER,
-        width=1,
+        width=SCALE,
     )
 
 
 def ordinal(n: int) -> str:
-    """Convert integer to ordinal string: 1 → '1st', 2 → '2nd', etc."""
     if 11 <= (n % 100) <= 13:
         suffix = "th"
     else:
