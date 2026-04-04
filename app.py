@@ -238,9 +238,7 @@ with tab_def:
 
         with col_prev:
             if "def_card_path" in st.session_state:
-                from PIL import Image
-                img = Image.open(st.session_state["def_card_path"])
-                st.image(img, caption="Defensive Stats Card", use_container_width=True)
+                st.image(st.session_state["def_card_path"], caption="Defensive Stats Card", use_container_width=True)
                 with open(st.session_state["def_card_path"], "rb") as f:
                     st.download_button(
                         "Download PNG",
@@ -315,9 +313,7 @@ with tab_player:
 
         with col_prev2:
             if "player_card_path" in st.session_state:
-                from PIL import Image
-                img = Image.open(st.session_state["player_card_path"])
-                st.image(img, caption="Player Log Card", use_container_width=True)
+                st.image(st.session_state["player_card_path"], caption="Player Log Card", use_container_width=True)
                 with open(st.session_state["player_card_path"], "rb") as f:
                     st.download_button(
                         "Download PNG",
@@ -379,9 +375,7 @@ with tab_odds:
 
             with col_prev3:
                 if "odds_card_path" in st.session_state:
-                    from PIL import Image
-                    img = Image.open(st.session_state["odds_card_path"])
-                    st.image(img, caption="Odds Card", use_container_width=True)
+                    st.image(st.session_state["odds_card_path"], caption="Odds Card", use_container_width=True)
                     with open(st.session_state["odds_card_path"], "rb") as f:
                         st.download_button(
                             "Download PNG",
