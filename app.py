@@ -240,7 +240,7 @@ with tab_def:
 
         with col_prev:
             if "def_card_bytes" in st.session_state:
-                st.image(BytesIO(st.session_state["def_card_bytes"]), caption="Defensive Stats Card", use_column_width="always")
+                st.image(st.session_state["def_card_bytes"], caption="Defensive Stats Card", use_container_width=True)
                 st.download_button(
                     "Download PNG",
                     st.session_state["def_card_bytes"],
@@ -316,7 +316,7 @@ with tab_player:
 
         with col_prev2:
             if "player_card_bytes" in st.session_state:
-                st.image(BytesIO(st.session_state["player_card_bytes"]), caption="Player Log Card", use_column_width="always")
+                st.image(st.session_state["player_card_bytes"], caption="Player Log Card", use_container_width=True)
                 st.download_button(
                     "Download PNG",
                     st.session_state["player_card_bytes"],
@@ -379,7 +379,7 @@ with tab_odds:
 
             with col_prev3:
                 if "odds_card_bytes" in st.session_state:
-                    st.image(BytesIO(st.session_state["odds_card_bytes"]), caption="Odds Card", use_column_width="always")
+                    st.image(st.session_state["odds_card_bytes"], caption="Odds Card", use_container_width=True)
                     st.download_button(
                         "Download PNG",
                         st.session_state["odds_card_bytes"],
