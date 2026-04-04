@@ -1,0 +1,258 @@
+{
+  "Arizona Cardinals": {
+    "logo": "arizona-cardinals-logo-transparent.png",
+    "teamrankings": "Arizona",
+    "sleeper_id": "ARI",
+    "abbreviation": "ARI",
+    "primary": "#97233F",
+    "secondary": "#FFB612"
+  },
+  "Atlanta Falcons": {
+    "logo": "Atlanta_Falcons_logo.png",
+    "teamrankings": "Atlanta",
+    "sleeper_id": "ATL",
+    "abbreviation": "ATL",
+    "primary": "#A71930",
+    "secondary": "#000000"
+  },
+  "Baltimore Ravens": {
+    "logo": "baltimore-ravens-logo-transparent.png",
+    "teamrankings": "Baltimore",
+    "sleeper_id": "BAL",
+    "abbreviation": "BAL",
+    "primary": "#241773",
+    "secondary": "#9E7C0C"
+  },
+  "Buffalo Bills": {
+    "logo": "buffalo-bills-logo-transparent.png",
+    "teamrankings": "Buffalo",
+    "sleeper_id": "BUF",
+    "abbreviation": "BUF",
+    "primary": "#00338D",
+    "secondary": "#C60C30"
+  },
+  "Carolina Panthers": {
+    "logo": "carolina-panthers-logo-transparent.png",
+    "teamrankings": "Carolina",
+    "sleeper_id": "CAR",
+    "abbreviation": "CAR",
+    "primary": "#0085CA",
+    "secondary": "#101820"
+  },
+  "Chicago Bears": {
+    "logo": "Chicago_Bears_logo.svg.png",
+    "teamrankings": "Chicago",
+    "sleeper_id": "CHI",
+    "abbreviation": "CHI",
+    "primary": "#0B162A",
+    "secondary": "#C83803"
+  },
+  "Cincinnati Bengals": {
+    "logo": "cincinnati-bengals-logo-transparent.png",
+    "teamrankings": "Cincinnati",
+    "sleeper_id": "CIN",
+    "abbreviation": "CIN",
+    "primary": "#FB4F14",
+    "secondary": "#000000"
+  },
+  "Cleveland Browns": {
+    "logo": "cleveland-browns-logo-transparent.png",
+    "teamrankings": "Cleveland",
+    "sleeper_id": "CLE",
+    "abbreviation": "CLE",
+    "primary": "#FF3C00",
+    "secondary": "#311D00"
+  },
+  "Dallas Cowboys": {
+    "logo": "dallas-cowboys-logo-transparent.png",
+    "teamrankings": "Dallas",
+    "sleeper_id": "DAL",
+    "abbreviation": "DAL",
+    "primary": "#003594",
+    "secondary": "#869397"
+  },
+  "Denver Broncos": {
+    "logo": "denver-broncos-logo-transparent.png",
+    "teamrankings": "Denver",
+    "sleeper_id": "DEN",
+    "abbreviation": "DEN",
+    "primary": "#FB4F14",
+    "secondary": "#002244"
+  },
+  "Detroit Lions": {
+    "logo": "Detroit_Lions_logo.png",
+    "teamrankings": "Detroit",
+    "sleeper_id": "DET",
+    "abbreviation": "DET",
+    "primary": "#0076B6",
+    "secondary": "#B0B7BC"
+  },
+  "Green Bay Packers": {
+    "logo": "green-bay-packers-logo-transparent.png",
+    "teamrankings": "Green Bay",
+    "sleeper_id": "GB",
+    "abbreviation": "GB",
+    "primary": "#203731",
+    "secondary": "#FFB612"
+  },
+  "Houston Texans": {
+    "logo": "houston-texans-logo-transparent.png",
+    "teamrankings": "Houston",
+    "sleeper_id": "HOU",
+    "abbreviation": "HOU",
+    "primary": "#03202F",
+    "secondary": "#A71930"
+  },
+  "Indianapolis Colts": {
+    "logo": "indianapolis-colts-logo-transparent.png",
+    "teamrankings": "Indianapolis",
+    "sleeper_id": "IND",
+    "abbreviation": "IND",
+    "primary": "#002C5F",
+    "secondary": "#A2AAAD"
+  },
+  "Jacksonville Jaguars": {
+    "logo": "jacksonville-jaguars-logo-transparent.png",
+    "teamrankings": "Jacksonville",
+    "sleeper_id": "JAX",
+    "abbreviation": "JAX",
+    "primary": "#006778",
+    "secondary": "#9F792C"
+  },
+  "Kansas City Chiefs": {
+    "logo": "kansas-city-chiefs-logo.png",
+    "teamrankings": "Kansas City",
+    "sleeper_id": "KC",
+    "abbreviation": "KC",
+    "primary": "#E31837",
+    "secondary": "#FFB81C"
+  },
+  "Las Vegas Raiders": {
+    "logo": "oakland-raiders-logo-transparent.png",
+    "teamrankings": "Las Vegas",
+    "sleeper_id": "LV",
+    "abbreviation": "LV",
+    "primary": "#000000",
+    "secondary": "#A5ACAF"
+  },
+  "Los Angeles Chargers": {
+    "logo": "Los_Angeles_Chargers_logo.svg.png",
+    "teamrankings": "LA Chargers",
+    "sleeper_id": "LAC",
+    "abbreviation": "LAC",
+    "primary": "#0080C6",
+    "secondary": "#FFC20E"
+  },
+  "Los Angeles Rams": {
+    "logo": "Rams logo.png",
+    "teamrankings": "LA Rams",
+    "sleeper_id": "LAR",
+    "abbreviation": "LAR",
+    "primary": "#003594",
+    "secondary": "#FFD100"
+  },
+  "Miami Dolphins": {
+    "logo": "miami-dolphins-logo-transparent.png",
+    "teamrankings": "Miami",
+    "sleeper_id": "MIA",
+    "abbreviation": "MIA",
+    "primary": "#008E97",
+    "secondary": "#FC4C02"
+  },
+  "Minnesota Vikings": {
+    "logo": "minnesota-vikings-logo-transparent.png",
+    "teamrankings": "Minnesota",
+    "sleeper_id": "MIN",
+    "abbreviation": "MIN",
+    "primary": "#4F2683",
+    "secondary": "#FFC62F"
+  },
+  "New England Patriots": {
+    "logo": "new-england-patriots-logo-transparent.png",
+    "teamrankings": "New England",
+    "sleeper_id": "NE",
+    "abbreviation": "NE",
+    "primary": "#002244",
+    "secondary": "#C60C30"
+  },
+  "New Orleans Saints": {
+    "logo": "new-orleans-saints-logo-transparent.png",
+    "teamrankings": "New Orleans",
+    "sleeper_id": "NO",
+    "abbreviation": "NO",
+    "primary": "#9F8958",
+    "secondary": "#101820"
+  },
+  "New York Giants": {
+    "logo": "new-york-giants-logo-transparent.png",
+    "teamrankings": "NY Giants",
+    "sleeper_id": "NYG",
+    "abbreviation": "NYG",
+    "primary": "#0B2265",
+    "secondary": "#A71930"
+  },
+  "New York Jets": {
+    "logo": "New_York_Jets_logo.svg.png",
+    "teamrankings": "NY Jets",
+    "sleeper_id": "NYJ",
+    "abbreviation": "NYJ",
+    "primary": "#125740",
+    "secondary": "#000000"
+  },
+  "Philadelphia Eagles": {
+    "logo": "philadelphia-eagles-logo.png",
+    "teamrankings": "Philadelphia",
+    "sleeper_id": "PHI",
+    "abbreviation": "PHI",
+    "primary": "#004C54",
+    "secondary": "#A5ACAF"
+  },
+  "Pittsburgh Steelers": {
+    "logo": "pittsburgh-steelers-logo-transparent.png",
+    "teamrankings": "Pittsburgh",
+    "sleeper_id": "PIT",
+    "abbreviation": "PIT",
+    "primary": "#101820",
+    "secondary": "#FFB612"
+  },
+  "San Francisco 49ers": {
+    "logo": "San_Francisco_49ers_logo.svg.png",
+    "teamrankings": "San Francisco",
+    "sleeper_id": "SF",
+    "abbreviation": "SF",
+    "primary": "#AA0000",
+    "secondary": "#B3995D"
+  },
+  "Seattle Seahawks": {
+    "logo": "seattle-seahawks-logo-transparent.png",
+    "teamrankings": "Seattle",
+    "sleeper_id": "SEA",
+    "abbreviation": "SEA",
+    "primary": "#002244",
+    "secondary": "#69BE28"
+  },
+  "Tampa Bay Buccaneers": {
+    "logo": "tampa-bay-buccaneers-logo-transparent.png",
+    "teamrankings": "Tampa Bay",
+    "sleeper_id": "TB",
+    "abbreviation": "TB",
+    "primary": "#D50A0A",
+    "secondary": "#FF7900"
+  },
+  "Tennessee Titans": {
+    "logo": "tennessee-titans-logo-transparent.png",
+    "teamrankings": "Tennessee",
+    "sleeper_id": "TEN",
+    "abbreviation": "TEN",
+    "primary": "#0C2340",
+    "secondary": "#4B92DB"
+  },
+  "Washington Commanders": {
+    "logo": "Washington_Commanders_logo.svg.png",
+    "teamrankings": "Washington",
+    "sleeper_id": "WAS",
+    "abbreviation": "WAS",
+    "primary": "#5A1414",
+    "secondary": "#FFB612"
+  }
+}

@@ -1,0 +1,29 @@
+# Environment
+.env
+credentials.json
+token.json
+
+# Streamlit secrets (local dev)
+.streamlit/secrets.toml
+
+# Output (regenerable)
+output/
+.tmp/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Config state (user-specific, not committed)
+config/stat_preferences.json

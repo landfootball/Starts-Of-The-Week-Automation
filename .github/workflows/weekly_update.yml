@@ -1,0 +1,48 @@
+name: Weekly Data Update
+
+on:
+  # Runs at 12:00 AM Sydney time on BOTH Tuesday and Wednesday
+  # Sydney AEDT = UTC+11 (Oct–Dec, most of NFL season)
+  # 12:00 AM Tuesday Sydney  = Monday    13:00 UTC
+  # 12:00 AM Wednesday Sydney = Tuesday   13:00 UTC
+  schedule:
+    - cron: "0 13 * * 1"   # Tuesday midnight Sydney
+    - cron: "0 13 * * 2"   # Wednesday midnight Sydney
+
+  # Also allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml python-dotenv
+
+      - name: Scrape TeamRankings defensive stats
+        run: python tools/scrape_teamrankings.py
+
+      - name: Scrape NFL odds (over/unders + implied totals)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python tools/scrape_odds.py
+
+      - name: Commit updated data files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/stats/latest.json data/odds/latest.json
+          # Only commit if there are changes
+          git diff --cached --quiet || git commit -m "chore: weekly data update $(date -u '+%Y-%m-%d')"
+          git push
