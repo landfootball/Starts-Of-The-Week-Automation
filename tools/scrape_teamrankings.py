@@ -28,7 +28,7 @@ STATS = {
         "positions": ["QB", "RB", "WR", "TE"],
         "higher_is_better": True,   # higher rank = more allowed = better matchup
     },
-    "opponent-total-yards-per-game": {
+    "opponent-yards-per-game": {
         "label": "Total Yards Allowed/G",
         "positions": ["QB", "RB", "WR", "TE"],
         "higher_is_better": True,
@@ -58,13 +58,13 @@ STATS = {
         "positions": ["RB"],
         "higher_is_better": True,
     },
-    "opponent-receptions-per-game": {
-        "label": "Receptions Allowed/G",
+    "opponent-completions-per-game": {
+        "label": "Completions Allowed/G",
         "positions": ["WR", "TE"],
         "higher_is_better": True,
     },
-    "opponent-passer-rating-allowed": {
-        "label": "Passer Rating Allowed",
+    "opponent-yards-per-pass-attempt": {
+        "label": "Yards/Pass Attempt Allowed",
         "positions": ["QB"],
         "higher_is_better": True,
     },
@@ -193,11 +193,14 @@ def scrape_all_stats() -> dict:
             if not canonical:
                 continue
 
+            # TeamRankings rank 1 = fewest allowed (best defense = worst fantasy matchup).
+            # Invert so that rank 1 in our system = most allowed = best fantasy matchup.
+            inverted_rank = 33 - row["rank"]
             output[canonical][slug] = {
                 "label": meta["label"],
                 "value": _parse_value(row["value"]),
                 "value_display": row["value"],
-                "rank": row["rank"],
+                "rank": inverted_rank,
                 "higher_is_better": meta["higher_is_better"],
                 "positions": meta["positions"],
             }

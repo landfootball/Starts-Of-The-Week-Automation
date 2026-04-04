@@ -48,16 +48,16 @@ def load_odds_data() -> dict:
 
 # ── Stat definitions (slug → display info) ────────────────────────────────────
 ALL_STATS = {
-    "opponent-points-per-game":          {"label": "Points Allowed/G",     "positions": ["QB","RB","WR","TE"]},
-    "opponent-total-yards-per-game":     {"label": "Total Yards Allowed/G","positions": ["QB","RB","WR","TE"]},
-    "opponent-passing-yards-per-game":   {"label": "Pass Yards Allowed/G", "positions": ["QB","WR","TE"]},
-    "opponent-rushing-yards-per-game":   {"label": "Rush Yards Allowed/G", "positions": ["RB"]},
-    "opponent-yards-per-rush-attempt":   {"label": "Yards/Carry Allowed",  "positions": ["RB"]},
-    "opponent-passing-touchdowns-per-game":  {"label": "Pass TDs Allowed/G",    "positions": ["QB","WR","TE"]},
-    "opponent-rushing-touchdowns-per-game":  {"label": "Rush TDs Allowed/G",    "positions": ["RB"]},
-    "opponent-receptions-per-game":          {"label": "Receptions Allowed/G",  "positions": ["WR","TE"]},
-    "opponent-passer-rating-allowed":        {"label": "Passer Rating Allowed", "positions": ["QB"]},
-    "opponent-third-down-conversion-pct":    {"label": "3rd Down Conv % Allowed","positions": ["QB","RB","WR","TE"]},
+    "opponent-points-per-game":          {"label": "Points Allowed/G",        "positions": ["QB","RB","WR","TE"]},
+    "opponent-yards-per-game":           {"label": "Total Yards Allowed/G",   "positions": ["QB","RB","WR","TE"]},
+    "opponent-passing-yards-per-game":   {"label": "Pass Yards Allowed/G",    "positions": ["QB","WR","TE"]},
+    "opponent-rushing-yards-per-game":   {"label": "Rush Yards Allowed/G",    "positions": ["RB"]},
+    "opponent-yards-per-rush-attempt":   {"label": "Yards/Carry Allowed",     "positions": ["RB"]},
+    "opponent-passing-touchdowns-per-game":  {"label": "Pass TDs Allowed/G",       "positions": ["QB","WR","TE"]},
+    "opponent-rushing-touchdowns-per-game":  {"label": "Rush TDs Allowed/G",       "positions": ["RB"]},
+    "opponent-completions-per-game":         {"label": "Completions Allowed/G",    "positions": ["WR","TE"]},
+    "opponent-yards-per-pass-attempt":       {"label": "Yards/Pass Attempt Allowed","positions": ["QB"]},
+    "opponent-third-down-conversion-pct":    {"label": "3rd Down Conv % Allowed",  "positions": ["QB","RB","WR","TE"]},
 }
 
 PREFS_PATH = ROOT / "config" / "stat_preferences.json"
