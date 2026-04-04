@@ -231,21 +231,22 @@ with tab_def:
                                 stat_slugs=selected_slugs,
                                 season=int(season),
                             )
-                            st.session_state["def_card_path"] = str(out_path)
+                            with open(out_path, "rb") as f:
+                                st.session_state["def_card_bytes"] = f.read()
+                            st.session_state["def_card_name"] = out_path.name
                             st.success(f"Card saved: {out_path.name}")
                         except Exception as e:
                             st.error(f"Error: {e}")
 
         with col_prev:
-            if "def_card_path" in st.session_state:
-                st.image(st.session_state["def_card_path"], caption="Defensive Stats Card", use_container_width=True)
-                with open(st.session_state["def_card_path"], "rb") as f:
-                    st.download_button(
-                        "Download PNG",
-                        f,
-                        file_name=Path(st.session_state["def_card_path"]).name,
-                        mime="image/png",
-                    )
+            if "def_card_bytes" in st.session_state:
+                st.image(st.session_state["def_card_bytes"], caption="Defensive Stats Card", use_container_width=True)
+                st.download_button(
+                    "Download PNG",
+                    st.session_state["def_card_bytes"],
+                    file_name=st.session_state.get("def_card_name", "def_card.png"),
+                    mime="image/png",
+                )
 
 # ══════════════════════════════════════════════════════════════════════════════
 # TAB 2 — Player Log Card
@@ -306,22 +307,23 @@ with tab_player:
                             player_lines=selected_lines,
                             season=int(season),
                         )
-                        st.session_state["player_card_path"] = str(out_path)
+                        with open(out_path, "rb") as f:
+                            st.session_state["player_card_bytes"] = f.read()
+                        st.session_state["player_card_name"] = out_path.name
                         st.success(f"Card saved: {out_path.name}")
                     except Exception as e:
                         st.error(f"Error: {e}")
 
         with col_prev2:
-            if "player_card_path" in st.session_state:
-                st.image(st.session_state["player_card_path"], caption="Player Log Card", use_container_width=True)
-                with open(st.session_state["player_card_path"], "rb") as f:
-                    st.download_button(
-                        "Download PNG",
-                        f,
-                        file_name=Path(st.session_state["player_card_path"]).name,
-                        mime="image/png",
-                        key="dl_player",
-                    )
+            if "player_card_bytes" in st.session_state:
+                st.image(st.session_state["player_card_bytes"], caption="Player Log Card", use_container_width=True)
+                st.download_button(
+                    "Download PNG",
+                    st.session_state["player_card_bytes"],
+                    file_name=st.session_state.get("player_card_name", "player_card.png"),
+                    mime="image/png",
+                    key="dl_player",
+                )
     elif "player_logs" in st.session_state:
         st.info("No performances found matching the criteria for this defense/position/week range.")
 
@@ -368,22 +370,23 @@ with tab_odds:
                                 off_team_name=off_team,
                                 season=int(season),
                             )
-                            st.session_state["odds_card_path"] = str(out_path)
+                            with open(out_path, "rb") as f:
+                                st.session_state["odds_card_bytes"] = f.read()
+                            st.session_state["odds_card_name"] = out_path.name
                             st.success(f"Card saved: {out_path.name}")
                         except Exception as e:
                             st.error(f"Error: {e}")
 
             with col_prev3:
-                if "odds_card_path" in st.session_state:
-                    st.image(st.session_state["odds_card_path"], caption="Odds Card", use_container_width=True)
-                    with open(st.session_state["odds_card_path"], "rb") as f:
-                        st.download_button(
-                            "Download PNG",
-                            f,
-                            file_name=Path(st.session_state["odds_card_path"]).name,
-                            mime="image/png",
-                            key="dl_odds",
-                        )
+                if "odds_card_bytes" in st.session_state:
+                    st.image(st.session_state["odds_card_bytes"], caption="Odds Card", use_container_width=True)
+                    st.download_button(
+                        "Download PNG",
+                        st.session_state["odds_card_bytes"],
+                        file_name=st.session_state.get("odds_card_name", "odds_card.png"),
+                        mime="image/png",
+                        key="dl_odds",
+                    )
         else:
             st.info(f"No odds data found for {off_team} this week.")
 
