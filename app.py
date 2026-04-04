@@ -82,6 +82,13 @@ team_names = sorted(team_map.keys())
 stats_data = load_stats_data()
 odds_data = load_odds_data()
 
+# Read scrape metadata
+_meta = stats_data.get("_meta", {})
+data_season = _meta.get("season", int(season) if "season" in dir() else 2025)
+data_week = _meta.get("nfl_week")
+data_scraped = _meta.get("scraped_at", "unknown")
+weeks_label = f"Weeks 1–{data_week}" if data_week else "Full season"
+
 with st.sidebar:
     st.markdown("### Matchup Setup")
 
@@ -105,8 +112,6 @@ with st.sidebar:
 
     weeks_back = st.radio("Player Log Window", ["L3W", "L4W"], index=1, horizontal=True)
     weeks_int = int(weeks_back[1])
-
-    season = st.number_input("Season Year", min_value=2020, max_value=2030, value=2025, step=1)
 
 # ── Team color for dynamic theming ────────────────────────────────────────────
 team_info = team_map.get(def_team, {})
@@ -183,11 +188,17 @@ st.markdown(f"""
 # ── Page header ────────────────────────────────────────────────────────────────
 col_h1, col_h2 = st.columns([6, 1])
 with col_h1:
+    if data_week:
+        data_badge = f'<span style="background:#1E3A1E; color:#4CAF50; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">📡 {data_season} SEASON · WEEKS 1–{data_week} · Updated {data_scraped}</span>'
+    else:
+        data_badge = f'<span style="background:#2A2A1E; color:#888; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px;">No live data — run weekly update</span>'
+
     st.markdown(f"""
-    <div style="margin-bottom: 4px;">
+    <div style="margin-bottom: 6px;">
         <span style="font-size: 26px; font-weight: 800; color: #FFFFFF;">FantasyLand</span>
         <span style="font-size: 26px; font-weight: 300; color: #888888;"> · Starts of the Week</span>
     </div>
+    <div style="margin-bottom: 8px;">{data_badge}</div>
     <div style="font-size: 13px; color: #666666; margin-bottom: 16px;">
         {position} matchup · {off_team} vs <span style="color:{primary_color}; font-weight:600;">{def_team}</span>
     </div>
@@ -337,7 +348,7 @@ with tab_def:
                                 team_name=def_team,
                                 position=position,
                                 stat_slugs=selected_slugs,
-                                season=int(season),
+                                season=data_season,
                                 output_path=tmp_path,
                             )
                             buf = BytesIO()
@@ -401,7 +412,7 @@ with tab_player:
                         def_team_abbr=def_abbr,
                         position=position,
                         weeks=weeks_int,
-                        season=int(season),
+                        season=data_season,
                     )
                     st.session_state["player_logs"] = logs
                 except Exception as e:
@@ -440,7 +451,7 @@ with tab_player:
                             def_team_name=def_team,
                             position=position,
                             player_lines=selected_lines,
-                            season=int(season),
+                            season=data_season,
                             output_path=tmp_path,
                         )
                         buf = BytesIO()
@@ -513,7 +524,7 @@ with tab_odds:
                             tmp_path = Path(tempfile.gettempdir()) / f"{safe}_odds_card.png"
                             generate_odds_card(
                                 off_team_name=off_team,
-                                season=int(season),
+                                season=data_season,
                                 output_path=tmp_path,
                             )
                             buf = BytesIO()

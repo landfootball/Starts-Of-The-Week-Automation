@@ -55,6 +55,11 @@ def generate_def_card(
     with open(DATA_PATH) as f:
         all_stats = json.load(f)
 
+    # Read metadata written by the scraper
+    meta = all_stats.get("_meta", {})
+    nfl_week = meta.get("nfl_week")
+    data_season = meta.get("season", season)
+
     team_stats = all_stats.get(team_name)
     if not team_stats:
         raise ValueError(f"Team '{team_name}' not found in stats data.")
@@ -167,9 +172,13 @@ def generate_def_card(
     draw_divider(draw, cx, footer_y)
 
     season_font = load_font("serif", "regular", 11)
+    if nfl_week:
+        footer_text = f"WEEKS 1–{nfl_week} · {data_season} NFL SEASON"
+    else:
+        footer_text = f"{season} NFL SEASON"
     draw.text(
         (cx + (28 * SCALE), footer_y + (12 * SCALE)),
-        f"{season} NFL SEASON",
+        footer_text,
         font=season_font,
         fill=GRAY_LABEL,
     )

@@ -11,6 +11,7 @@ import json
 import time
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 import requests
@@ -212,20 +213,61 @@ def scrape_all_stats() -> dict:
     return output
 
 
+def _fetch_nfl_state() -> dict:
+    """Fetch current NFL season/week from Sleeper API (no auth required)."""
+    try:
+        resp = requests.get("https://api.sleeper.app/v1/state/nfl", timeout=10)
+        resp.raise_for_status()
+        state = resp.json()
+        return {
+            "season": int(state.get("season", 2025)),
+            "nfl_week": int(state.get("week", 1)),
+            "season_type": state.get("season_type", "regular"),
+        }
+    except Exception as e:
+        print(f"  Warning: could not fetch NFL state from Sleeper ({e}). Using defaults.")
+        return {"season": 2025, "nfl_week": 1, "season_type": "regular"}
+
+
 def main() -> None:
     print("=== TeamRankings Scraper ===")
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Get current NFL week from Sleeper
+    print("  Fetching current NFL state from Sleeper...", end=" ", flush=True)
+    nfl_state = _fetch_nfl_state()
+    print(f"Season {nfl_state['season']}, Week {nfl_state['nfl_week']} ({nfl_state['season_type']})")
+
     data = scrape_all_stats()
+
+    # Resolve the actual data season.
+    # In the offseason Sleeper reports the UPCOMING season (e.g. 2026, week 0).
+    # TeamRankings still shows the completed season's stats, so we step back one year.
+    is_offseason = nfl_state["season_type"] in ("off", "pre") or nfl_state["nfl_week"] == 0
+    if is_offseason:
+        data_season = nfl_state["season"] - 1
+        nfl_week = None          # no meaningful week to display
+        weeks_label = "Full season"
+    else:
+        data_season = nfl_state["season"]
+        nfl_week = nfl_state["nfl_week"]
+        weeks_label = f"1–{nfl_week}"
+
+    data["_meta"] = {
+        "scraped_at": date.today().isoformat(),
+        "season": data_season,
+        "nfl_week": nfl_week,
+        "season_type": nfl_state["season_type"],
+        "weeks_included": weeks_label,
+    }
 
     out_path = DATA_DIR / "latest.json"
     with open(out_path, "w") as f:
         json.dump(data, f, indent=2)
 
-    # Count how many stats were populated
-    total = sum(len(v) for v in data.values())
+    total = sum(len(v) for v in data.values() if isinstance(v, dict) and "_meta" not in str(v))
     print(f"\nSaved {out_path}")
-    print(f"Stats populated: {total} ({total // 32} stats × 32 teams)")
+    print(f"Stats populated: {total} ({total // max(total // 10, 1)} stats × 32 teams)")
 
 
 if __name__ == "__main__":

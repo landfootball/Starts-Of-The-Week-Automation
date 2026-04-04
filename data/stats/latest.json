@@ -3710,5 +3710,12 @@
         "TE"
       ]
     }
+  },
+  "_meta": {
+    "scraped_at": "2026-04-04",
+    "season": 2025,
+    "nfl_week": null,
+    "season_type": "off",
+    "weeks_included": "Full season"
   }
 }
