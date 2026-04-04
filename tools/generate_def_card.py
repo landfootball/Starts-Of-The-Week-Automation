@@ -74,6 +74,22 @@ def generate_def_card(
 
     img, draw, (cx, cy) = make_card_canvas(card_h)
 
+    # ── Team color accent bar (top of card) ───────────────────────────────────
+    CARD_RADIUS = 24 * SCALE
+    BAR_H = 8 * SCALE
+    draw.rounded_rectangle(
+        [cx, cy, cx + CARD_W, cy + CARD_RADIUS + BAR_H],
+        radius=CARD_RADIUS,
+        fill=primary_color,
+        corners=(True, True, False, False),
+    )
+    # Restore cream below the visible bar
+    from card_utils import CARD_BG
+    draw.rectangle(
+        [cx, cy + BAR_H, cx + CARD_W, cy + CARD_RADIUS + BAR_H],
+        fill=CARD_BG,
+    )
+
     # ── Team logo (top right) ──────────────────────────────────────────────────
     logo = load_team_logo(team_name, size=(88, 88))
     if logo:

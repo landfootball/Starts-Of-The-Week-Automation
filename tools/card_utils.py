@@ -20,7 +20,7 @@ TEAM_MAP_PATH = ROOT / "config" / "team_map.json"
 SCALE = 2
 
 # ── Card dimensions (logical units × SCALE = actual pixels) ───────────────────
-CARD_W = 650 * SCALE        # 1300px
+CARD_W = 500 * SCALE        # 1000px
 OUTER_PAD = 32 * SCALE      # 64px
 # CARD_H is dynamic — calculated per card based on content
 
@@ -29,7 +29,7 @@ BG_DARK = "#1A1A1A"
 CARD_BG = "#F5F0E8"
 CARD_BG_ALT = "#EDE8DC"
 DIVIDER = "#D8D0C0"
-GRAY_LABEL = "#888888"
+GRAY_LABEL = "#4A4A4A"
 GRAY_SUBTITLE = "#666666"
 BLACK = "#111111"
 WHITE = "#FFFFFF"
