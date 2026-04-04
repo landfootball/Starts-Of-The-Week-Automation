@@ -188,8 +188,15 @@ st.markdown(f"""
 # ── Page header ────────────────────────────────────────────────────────────────
 col_h1, col_h2 = st.columns([6, 1])
 with col_h1:
-    if data_week:
-        data_badge = f'<span style="background:#1E3A1E; color:#4CAF50; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">📡 {data_season} SEASON · WEEKS 1–{data_week} · Updated {data_scraped}</span>'
+    if data_week == 1:
+        week_label = f"{data_season} Season Week 1"
+    elif data_week and data_week > 1:
+        week_label = f"{data_season} Season Week 1-{data_week}"
+    else:
+        week_label = f"{data_season} Season"
+
+    if stats_data:
+        data_badge = f'<span style="background:#1E3A1E; color:#4CAF50; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">📡 {week_label} · Updated {data_scraped}</span>'
     else:
         data_badge = f'<span style="background:#2A2A1E; color:#888; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px;">No live data — run weekly update</span>'
 

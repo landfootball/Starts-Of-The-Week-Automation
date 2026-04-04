@@ -172,10 +172,12 @@ def generate_def_card(
     draw_divider(draw, cx, footer_y)
 
     season_font = load_font("serif", "regular", 11)
-    if nfl_week:
-        footer_text = f"WEEKS 1–{nfl_week} · {data_season} NFL SEASON"
+    if nfl_week and nfl_week == 1:
+        footer_text = f"{data_season} Season Week 1"
+    elif nfl_week and nfl_week > 1:
+        footer_text = f"{data_season} Season Week 1-{nfl_week}"
     else:
-        footer_text = f"{season} NFL SEASON"
+        footer_text = f"{data_season} Season"
     draw.text(
         (cx + (28 * SCALE), footer_y + (12 * SCALE)),
         footer_text,
