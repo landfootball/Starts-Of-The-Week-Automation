@@ -9,8 +9,11 @@ Hosted:       Deployed via Streamlit Community Cloud
 import json
 import os
 import sys
+import tempfile
 from pathlib import Path
 from io import BytesIO
+
+from PIL import Image
 
 import streamlit as st
 
@@ -225,22 +228,26 @@ with tab_def:
                     with st.spinner("Generating card..."):
                         from generate_def_card import generate_def_card
                         try:
-                            out_path = generate_def_card(
+                            safe = def_team.lower().replace(" ", "_")
+                            tmp_path = Path(tempfile.gettempdir()) / f"{safe}_def_card.png"
+                            generate_def_card(
                                 team_name=def_team,
                                 position=position,
                                 stat_slugs=selected_slugs,
                                 season=int(season),
+                                output_path=tmp_path,
                             )
-                            with open(out_path, "rb") as f:
-                                st.session_state["def_card_bytes"] = f.read()
-                            st.session_state["def_card_name"] = out_path.name
-                            st.success(f"Card saved: {out_path.name}")
+                            buf = BytesIO()
+                            Image.open(tmp_path).save(buf, format="PNG")
+                            st.session_state["def_card_bytes"] = buf.getvalue()
+                            st.session_state["def_card_name"] = tmp_path.name
+                            st.success("Card generated!")
                         except Exception as e:
                             st.error(f"Error: {e}")
 
         with col_prev:
             if "def_card_bytes" in st.session_state:
-                st.image(st.session_state["def_card_bytes"], caption="Defensive Stats Card", use_container_width=True)
+                st.image(Image.open(BytesIO(st.session_state["def_card_bytes"])), caption="Defensive Stats Card", use_column_width=True)
                 st.download_button(
                     "Download PNG",
                     st.session_state["def_card_bytes"],
@@ -301,22 +308,26 @@ with tab_player:
                 with st.spinner("Generating card..."):
                     from generate_player_card import generate_player_card
                     try:
-                        out_path = generate_player_card(
+                        safe = def_team.lower().replace(" ", "_")
+                        tmp_path = Path(tempfile.gettempdir()) / f"{safe}_player_card.png"
+                        generate_player_card(
                             def_team_name=def_team,
                             position=position,
                             player_lines=selected_lines,
                             season=int(season),
+                            output_path=tmp_path,
                         )
-                        with open(out_path, "rb") as f:
-                            st.session_state["player_card_bytes"] = f.read()
-                        st.session_state["player_card_name"] = out_path.name
-                        st.success(f"Card saved: {out_path.name}")
+                        buf = BytesIO()
+                        Image.open(tmp_path).save(buf, format="PNG")
+                        st.session_state["player_card_bytes"] = buf.getvalue()
+                        st.session_state["player_card_name"] = tmp_path.name
+                        st.success("Card generated!")
                     except Exception as e:
                         st.error(f"Error: {e}")
 
         with col_prev2:
             if "player_card_bytes" in st.session_state:
-                st.image(st.session_state["player_card_bytes"], caption="Player Log Card", use_container_width=True)
+                st.image(Image.open(BytesIO(st.session_state["player_card_bytes"])), caption="Player Log Card", use_column_width=True)
                 st.download_button(
                     "Download PNG",
                     st.session_state["player_card_bytes"],
@@ -366,20 +377,24 @@ with tab_odds:
                     with st.spinner("Generating card..."):
                         from generate_odds_card import generate_odds_card
                         try:
-                            out_path = generate_odds_card(
+                            safe = off_team.lower().replace(" ", "_")
+                            tmp_path = Path(tempfile.gettempdir()) / f"{safe}_odds_card.png"
+                            generate_odds_card(
                                 off_team_name=off_team,
                                 season=int(season),
+                                output_path=tmp_path,
                             )
-                            with open(out_path, "rb") as f:
-                                st.session_state["odds_card_bytes"] = f.read()
-                            st.session_state["odds_card_name"] = out_path.name
-                            st.success(f"Card saved: {out_path.name}")
+                            buf = BytesIO()
+                            Image.open(tmp_path).save(buf, format="PNG")
+                            st.session_state["odds_card_bytes"] = buf.getvalue()
+                            st.session_state["odds_card_name"] = tmp_path.name
+                            st.success("Card generated!")
                         except Exception as e:
                             st.error(f"Error: {e}")
 
             with col_prev3:
                 if "odds_card_bytes" in st.session_state:
-                    st.image(st.session_state["odds_card_bytes"], caption="Odds Card", use_container_width=True)
+                    st.image(Image.open(BytesIO(st.session_state["odds_card_bytes"])), caption="Odds Card", use_column_width=True)
                     st.download_button(
                         "Download PNG",
                         st.session_state["odds_card_bytes"],
