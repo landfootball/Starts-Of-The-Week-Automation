@@ -84,7 +84,7 @@ odds_data = load_odds_data()
 
 # Read scrape metadata
 _meta = stats_data.get("_meta", {})
-data_season = _meta.get("season", int(season) if "season" in dir() else 2025)
+data_season = _meta.get("season", 2025)
 data_week = _meta.get("nfl_week")
 data_scraped = _meta.get("scraped_at", "unknown")
 weeks_label = f"Weeks 1–{data_week}" if data_week else "Full season"
@@ -318,7 +318,7 @@ with tab_def:
 
                     col_check, col_info = st.columns([1, 8])
                     with col_check:
-                        checked = st.checkbox("", value=default, key=f"def_stat_{slug}", label_visibility="collapsed")
+                        checked = st.checkbox(meta["label"], value=default, key=f"def_stat_{slug}", label_visibility="collapsed")
                     with col_info:
                         st.markdown(f"""
                         <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0;">
