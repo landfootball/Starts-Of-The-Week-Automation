@@ -138,6 +138,37 @@ def upload_file(
     return link
 
 
+def upload_bytes(
+    file_name: str,
+    data: bytes,
+    folder_id: str | None = None,
+    overwrite: bool = True,
+) -> str:
+    """
+    Upload raw PNG bytes to Google Drive without needing a persistent file on disk.
+    Writes to a temporary file, uploads, then cleans up.
+
+    Args:
+        file_name: The filename to use in Google Drive (e.g. "seahawks_def_card.png")
+        data: Raw PNG bytes
+        folder_id: Google Drive folder ID. None = root of My Drive.
+        overwrite: If True, delete existing file with same name before uploading.
+
+    Returns:
+        Shareable Google Drive URL for the uploaded file.
+    """
+    import tempfile
+    tmp_path = Path(tempfile.gettempdir()) / file_name
+    try:
+        tmp_path.write_bytes(data)
+        return upload_file(tmp_path, folder_id=folder_id, overwrite=overwrite)
+    finally:
+        try:
+            tmp_path.unlink()
+        except Exception:
+            pass
+
+
 def upload_all_outputs(folder_id: str | None = None) -> list[dict]:
     """
     Upload all PNG files in the output/ directory to Google Drive.

@@ -36,13 +36,14 @@ STATS_PATH = ROOT / "data" / "stats" / "latest.json"
 ODDS_PATH = ROOT / "data" / "odds" / "latest.json"
 
 # ── Position-relevant stat slugs ───────────────────────────────────────────────
+# Must match the slugs used in tools/scrape_teamrankings.py STATS dict exactly.
 POSITION_STATS: dict[str, list[str]] = {
     "QB": [
         "opponent-passing-yards-per-game",
         "opponent-passing-touchdowns-per-game",
-        "opponent-passer-rating-allowed",
+        "opponent-yards-per-pass-attempt",
         "opponent-points-per-game",
-        "opponent-total-yards-per-game",
+        "opponent-yards-per-game",
     ],
     "RB": [
         "opponent-rushing-yards-per-game",
@@ -53,17 +54,40 @@ POSITION_STATS: dict[str, list[str]] = {
     "WR": [
         "opponent-passing-yards-per-game",
         "opponent-passing-touchdowns-per-game",
-        "opponent-receptions-per-game",
+        "opponent-completions-per-game",
         "opponent-points-per-game",
-        "opponent-total-yards-per-game",
+        "opponent-yards-per-game",
     ],
     "TE": [
         "opponent-passing-yards-per-game",
         "opponent-passing-touchdowns-per-game",
-        "opponent-receptions-per-game",
+        "opponent-completions-per-game",
         "opponent-points-per-game",
     ],
 }
+
+
+def validate_position_stats(stats_data: dict) -> list[str]:
+    """
+    Check that all slugs in POSITION_STATS exist in the scraped data.
+    Returns a list of warning strings for any missing slugs.
+    Intended to be called at startup or after data refresh.
+    """
+    warnings = []
+    # Gather all keys present for any team (skip _meta)
+    all_slugs: set[str] = set()
+    for team, team_stats in stats_data.items():
+        if team == "_meta" or not isinstance(team_stats, dict):
+            continue
+        all_slugs.update(team_stats.keys())
+
+    for position, slugs in POSITION_STATS.items():
+        for slug in slugs:
+            if slug not in all_slugs:
+                warnings.append(
+                    f"Pickle Score ({position}): slug '{slug}' not found in scraped data"
+                )
+    return warnings
 
 # Weights for each factor (must sum to 1.0)
 WEIGHTS = {

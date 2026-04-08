@@ -8,6 +8,7 @@ Hosted:       Deployed via Streamlit Community Cloud
 
 import json
 import os
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -34,7 +35,7 @@ def load_team_map() -> dict:
         return json.load(f)
 
 @st.cache_data
-def load_stats_data() -> dict:
+def load_stats_data(mtime: float = 0) -> dict:  # mtime busts cache when file changes
     path = ROOT / "data" / "stats" / "latest.json"
     if not path.exists():
         return {}
@@ -42,12 +43,16 @@ def load_stats_data() -> dict:
         return json.load(f)
 
 @st.cache_data
-def load_odds_data() -> dict:
+def load_odds_data(mtime: float = 0) -> dict:  # mtime busts cache when file changes
     path = ROOT / "data" / "odds" / "latest.json"
     if not path.exists():
         return {}
     with open(path) as f:
         return json.load(f)
+
+def _file_mtime(rel_path: str) -> float:
+    p = ROOT / rel_path
+    return p.stat().st_mtime if p.exists() else 0.0
 
 # ── Stat definitions ───────────────────────────────────────────────────────────
 ALL_STATS = {
@@ -79,8 +84,8 @@ def save_prefs(prefs: dict) -> None:
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 team_map = load_team_map()
 team_names = sorted(team_map.keys())
-stats_data = load_stats_data()
-odds_data = load_odds_data()
+stats_data = load_stats_data(mtime=_file_mtime("data/stats/latest.json"))
+odds_data = load_odds_data(mtime=_file_mtime("data/odds/latest.json"))
 
 # Read scrape metadata
 _meta = stats_data.get("_meta", {})
@@ -91,6 +96,10 @@ weeks_label = f"Weeks 1–{data_week}" if data_week else "Full season"
 
 with st.sidebar:
     st.markdown("### Matchup Setup")
+
+    if st.button("↺ Refresh Data", use_container_width=True, help="Reload stats and odds from disk (clears cache)"):
+        st.cache_data.clear()
+        st.rerun()
 
     def_team = st.selectbox(
         "Opposing Defense",
@@ -215,7 +224,13 @@ st.divider()
 
 # ── Pickle Score ───────────────────────────────────────────────────────────────
 if stats_data:
-    from pickle_score import calculate_pickle_score
+    from pickle_score import calculate_pickle_score, validate_position_stats
+    slug_warnings = validate_position_stats(stats_data)
+    if slug_warnings:
+        with st.expander("⚠ Pickle Score data warnings", expanded=False):
+            for w in slug_warnings:
+                st.warning(w)
+
     pickle_result = calculate_pickle_score(
         def_team_name=def_team,
         off_team_name=off_team,
@@ -349,7 +364,7 @@ with tab_def:
                     with st.spinner("Generating..."):
                         from generate_def_card import generate_def_card
                         try:
-                            safe = def_team.lower().replace(" ", "_")
+                            safe = re.sub(r"[^\w\-]", "_", def_team.lower())
                             tmp_path = Path(tempfile.gettempdir()) / f"{safe}_def_card.png"
                             generate_def_card(
                                 team_name=def_team,
@@ -452,7 +467,7 @@ with tab_player:
                 with st.spinner("Generating..."):
                     from generate_player_card import generate_player_card
                     try:
-                        safe = def_team.lower().replace(" ", "_")
+                        safe = re.sub(r"[^\w\-]", "_", def_team.lower())
                         tmp_path = Path(tempfile.gettempdir()) / f"{safe}_player_card.png"
                         generate_player_card(
                             def_team_name=def_team,
@@ -527,7 +542,7 @@ with tab_odds:
                     with st.spinner("Generating..."):
                         from generate_odds_card import generate_odds_card
                         try:
-                            safe = off_team.lower().replace(" ", "_")
+                            safe = re.sub(r"[^\w\-]", "_", off_team.lower())
                             tmp_path = Path(tempfile.gettempdir()) / f"{safe}_odds_card.png"
                             generate_odds_card(
                                 off_team_name=off_team,
@@ -569,24 +584,28 @@ with tab_odds:
 # ══════════════════════════════════════════════════════════════════════════════
 st.divider()
 
-card_keys = ["def_card_bytes", "player_card_bytes", "odds_card_bytes"]
-cards_ready = [k for k in card_keys if k in st.session_state]
+# Map bytes key → filename key for each card type
+_CARD_PAIRS = [
+    ("def_card_bytes",    "def_card_name"),
+    ("player_card_bytes", "player_card_name"),
+    ("odds_card_bytes",   "odds_card_name"),
+]
+cards_ready = [(bk, nk) for bk, nk in _CARD_PAIRS if bk in st.session_state]
 
 upload_col, _ = st.columns([1, 2])
 with upload_col:
     if cards_ready:
         st.caption(f"{len(cards_ready)} card(s) ready to upload")
     if st.button("Upload All Cards to Google Drive", type="secondary", use_container_width=True, disabled=not cards_ready):
-        from upload_to_gdrive import upload_all_outputs
+        from upload_to_gdrive import upload_bytes as _upload_bytes
         with st.spinner("Uploading..."):
-            try:
-                results = upload_all_outputs()
-                for r in results:
-                    if r.get("url"):
-                        st.success(f"{r['file']} → [View in Drive]({r['url']})")
-                    else:
-                        st.error(f"{r['file']} failed: {r.get('error', 'unknown')}")
-            except FileNotFoundError as e:
-                st.error(str(e))
-            except Exception as e:
-                st.error(f"Upload error: {e}")
+            for bytes_key, name_key in cards_ready:
+                data = st.session_state[bytes_key]
+                file_name = st.session_state.get(name_key, bytes_key.replace("_bytes", ".png"))
+                try:
+                    url = _upload_bytes(file_name, data)
+                    st.success(f"{file_name} → [View in Drive]({url})")
+                except FileNotFoundError as e:
+                    st.error(str(e))
+                except Exception as e:
+                    st.error(f"{file_name} failed: {e}")
