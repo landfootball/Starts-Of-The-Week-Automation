@@ -37,6 +37,13 @@ REGIONS = "us"
 MARKETS = "totals,h2h"       # totals = game O/U; h2h for implied totals calculation
 ALT_MARKETS = "team_totals"  # direct implied team totals market
 
+# ── Preferred bookmaker ────────────────────────────────────────────────────────
+# Set ODDS_BOOKMAKER in .env (or GitHub secret) to pin to a specific sportsbook.
+# Common Odds API keys: fanduel, draftkings, betmgm, caesars, williamhill_us,
+#                       novig, pointsbetus, betrivers, unibet_us
+# If not set or the book isn't found for a game, falls back to any available book.
+PREFERRED_BOOKMAKER = os.getenv("ODDS_BOOKMAKER", "fanduel")
+
 
 # ── TeamRankings name → canonical team name lookup ────────────────────────────
 def _load_team_map() -> dict:
@@ -98,9 +105,17 @@ def fetch_team_totals(api_key: str) -> list[dict]:
         return []
 
 
+def _sorted_bookmakers(game: dict) -> list[dict]:
+    """Return bookmakers list with preferred book first, others after."""
+    books = game.get("bookmakers", [])
+    preferred = [b for b in books if b.get("key") == PREFERRED_BOOKMAKER]
+    others    = [b for b in books if b.get("key") != PREFERRED_BOOKMAKER]
+    return preferred + others
+
+
 def _extract_game_total(game: dict) -> float | None:
-    """Pull the over/under total from a game's bookmakers data."""
-    for bookmaker in game.get("bookmakers", []):
+    """Pull the over/under total from a game's bookmakers data, preferring PREFERRED_BOOKMAKER."""
+    for bookmaker in _sorted_bookmakers(game):
         for market in bookmaker.get("markets", []):
             if market["key"] == "totals":
                 for outcome in market.get("outcomes", []):
@@ -120,7 +135,7 @@ def _extract_team_totals_from_h2h(game: dict) -> tuple[float | None, float | Non
         return None, None
 
     # Try to find h2h odds
-    for bookmaker in game.get("bookmakers", []):
+    for bookmaker in _sorted_bookmakers(game):
         for market in bookmaker.get("markets", []):
             if market["key"] == "h2h":
                 outcomes = market.get("outcomes", [])
@@ -153,9 +168,9 @@ def _extract_team_totals_from_h2h(game: dict) -> tuple[float | None, float | Non
 
 
 def _extract_direct_team_totals(game: dict) -> dict[str, float]:
-    """Extract implied totals from the team_totals market (more accurate)."""
+    """Extract implied totals from the team_totals market (more accurate), preferring PREFERRED_BOOKMAKER."""
     totals = {}
-    for bookmaker in game.get("bookmakers", []):
+    for bookmaker in _sorted_bookmakers(game):
         for market in bookmaker.get("markets", []):
             if market["key"] == "team_totals":
                 for outcome in market.get("outcomes", []):
@@ -277,7 +292,11 @@ def build_odds_data(api_key: str, team_map: dict) -> dict:
             "opponent": opponent,
         }
 
-    return {"games": processed_games, "teams": teams}
+    return {
+        "games": processed_games,
+        "teams": teams,
+        "_meta": {"bookmaker": PREFERRED_BOOKMAKER},
+    }
 
 
 def main() -> None:

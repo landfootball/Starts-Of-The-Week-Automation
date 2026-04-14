@@ -494,11 +494,75 @@ st.markdown('<div style="height:32px;"></div>', unsafe_allow_html=True)
 # ══════════════════════════════════════════════════════════════════════════════
 # TABS
 # ══════════════════════════════════════════════════════════════════════════════
-tab_def, tab_player, tab_odds = st.tabs([
+tab_pickle, tab_def, tab_player, tab_odds = st.tabs([
+    "Pickle Score Card",
     "Defensive Stats Card",
     "Player Log Card",
     "Odds Card",
 ])
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 0 — Pickle Score Card
+# ─────────────────────────────────────────────────────────────────────────────
+with tab_pickle:
+    if not stats_data:
+        st.warning("No stats data available — run weekly update first.")
+    else:
+        left_pkl, right_pkl = st.columns([1, 1], gap="large")
+
+        with left_pkl:
+            st.markdown(f"""
+            <div style="margin-bottom:20px;">
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#F0EDE8;letter-spacing:2px;line-height:1;">{off_team.split()[-1]} vs {def_team.split()[-1]}</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#888;letter-spacing:1px;margin-top:4px;">Generate a shareable Pickle Score card for this {position} matchup</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            if st.button("Generate Pickle Score Card", use_container_width=True, key="gen_pickle"):
+                with st.spinner("Generating..."):
+                    from generate_pickle_card import generate_pickle_card
+                    try:
+                        reasons = _pickle_reasons(position, bd, def_team, off_team)
+                        safe_def = re.sub(r"[^\w\-]", "_", def_team.lower())
+                        safe_off = re.sub(r"[^\w\-]", "_", off_team.lower())
+                        tmp_path = Path(tempfile.gettempdir()) / f"{safe_off}_vs_{safe_def}_{position}_pickle.png"
+                        generate_pickle_card(
+                            def_team_name=def_team,
+                            off_team_name=off_team,
+                            position=position,
+                            score=score,
+                            verdict=clean_label,
+                            reasons=reasons,
+                            season=data_season,
+                            nfl_week=data_week,
+                            output_path=tmp_path,
+                        )
+                        buf = BytesIO()
+                        Image.open(tmp_path).save(buf, format="PNG")
+                        st.session_state["pickle_card_bytes"] = buf.getvalue()
+                        st.session_state["pickle_card_name"]  = f"{safe_off}_vs_{safe_def}_{position}_pickle.png"
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+
+        with right_pkl:
+            if "pickle_card_bytes" in st.session_state:
+                st.image(st.session_state["pickle_card_bytes"], use_column_width="always")
+                st.download_button(
+                    "Download PNG",
+                    st.session_state["pickle_card_bytes"],
+                    file_name=st.session_state.get("pickle_card_name", "pickle_card.png"),
+                    mime="image/png",
+                    key="dl_pickle",
+                    use_container_width=True,
+                )
+            else:
+                st.markdown("""
+                <div style="border:1px dashed #252525;border-radius:2px;padding:60px 20px;text-align:center;">
+                    <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:#3A3A3A;letter-spacing:1px;">Generate your Pickle Score card above</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#252525;margin-top:8px;">Preview will appear here</div>
+                </div>
+                """, unsafe_allow_html=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -788,6 +852,7 @@ st.markdown('<div style="padding:0 40px;">', unsafe_allow_html=True)
 st.divider()
 
 _CARD_PAIRS = [
+    ("pickle_card_bytes", "pickle_card_name"),
     ("def_card_bytes",    "def_card_name"),
     ("player_card_bytes", "player_card_name"),
     ("odds_card_bytes",   "odds_card_name"),
