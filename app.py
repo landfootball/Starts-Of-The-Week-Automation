@@ -556,7 +556,7 @@ with tab_def:
         with right_col:
             st.markdown('<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:#2A2A2A;text-transform:uppercase;margin-bottom:16px;">CARD PREVIEW</div>', unsafe_allow_html=True)
             if "def_card_bytes" in st.session_state:
-                st.image(st.session_state["def_card_bytes"], use_container_width=True)
+                st.image(st.session_state["def_card_bytes"], use_column_width="always")
                 st.download_button(
                     "DOWNLOAD PNG",
                     st.session_state["def_card_bytes"],
@@ -650,7 +650,7 @@ with tab_player:
     with right_col2:
         st.markdown('<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:#2A2A2A;text-transform:uppercase;margin-bottom:16px;">CARD PREVIEW</div>', unsafe_allow_html=True)
         if "player_card_bytes" in st.session_state:
-            st.image(st.session_state["player_card_bytes"], use_container_width=True)
+            st.image(st.session_state["player_card_bytes"], use_column_width="always")
             st.download_button(
                 "DOWNLOAD PNG",
                 st.session_state["player_card_bytes"],
