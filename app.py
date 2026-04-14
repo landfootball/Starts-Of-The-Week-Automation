@@ -282,21 +282,25 @@ with st.sidebar:
 
     st.markdown('<div style="height:20px;"></div>', unsafe_allow_html=True)
 
+    st.markdown('<div style="font-family:\'IBM Plex Mono\',monospace;font-size:9px;color:#FF3300;letter-spacing:2px;margin-bottom:4px;">STEP 1 — SET MATCHUP</div>', unsafe_allow_html=True)
     def_team = st.selectbox(
-        "OPPOSING DEFENSE",
+        "DEFENSE TO TARGET",
         team_names,
         index=team_names.index("Dallas Cowboys") if "Dallas Cowboys" in team_names else 0,
     )
     off_team = st.selectbox(
-        "OFFENSIVE TEAM",
+        "PLAYER'S TEAM",
         team_names,
         index=team_names.index("Los Angeles Rams") if "Los Angeles Rams" in team_names else 0,
     )
+
+    st.markdown('<div style="height:8px;"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-family:\'IBM Plex Mono\',monospace;font-size:9px;color:#FF3300;letter-spacing:2px;margin-bottom:4px;">STEP 2 — POSITION &amp; WINDOW</div>', unsafe_allow_html=True)
     position = st.radio("POSITION", ["QB", "RB", "WR", "TE"], horizontal=True)
 
     st.markdown('<div style="height:12px;"></div>', unsafe_allow_html=True)
-    st.markdown('<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:10px;font-weight:700;color:#333;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">PLAYER LOG WINDOW</div>', unsafe_allow_html=True)
-    weeks_back = st.radio("Player Log Window", ["L3W", "L4W"], index=1, horizontal=True, label_visibility="collapsed")
+    st.markdown('<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:10px;font-weight:700;color:#333;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">RECENT WEEKS TO USE</div>', unsafe_allow_html=True)
+    weeks_back = st.radio("Recent Weeks", ["L3W", "L4W"], index=1, horizontal=True, label_visibility="collapsed")
     weeks_int = int(weeks_back[1])
 
     # Data badge
@@ -405,28 +409,12 @@ if stats_data:
         </div>"""
 
     st.markdown(f"""
-    <div style="
-        background:{sb};
-        border-left:6px solid {sc};
-        border-top:1px solid {sc}22;
-        border-right:1px solid {sc}11;
-        border-bottom:1px solid {sc}11;
-        padding:28px 36px;
-        margin:0 40px 8px 40px;
-        display:flex;
-        align-items:stretch;
-        gap:40px;
-    ">
-        <!-- BIG SCORE -->
+    <div style="background:{sb};border-left:6px solid {sc};border-top:1px solid {sc}22;border-right:1px solid {sc}11;border-bottom:1px solid {sc}11;padding:28px 36px;margin:0 40px 8px 40px;display:flex;align-items:stretch;gap:40px;">
         <div style="min-width:120px;">
             <div style="font-family:'Bebas Neue',sans-serif;font-size:108px;color:{sc};line-height:1;letter-spacing:-3px;">{score}</div>
             <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:#333;text-transform:uppercase;margin-top:-6px;">Pickle Score</div>
         </div>
-
-        <!-- DIVIDER -->
         <div style="width:1px;background:#1E1E1E;"></div>
-
-        <!-- VERDICT + BAR -->
         <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
             <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:{sc};letter-spacing:3px;line-height:1;margin-bottom:20px;">{clean_label}</div>
             <div style="background:#1E1E1E;height:6px;width:100%;position:relative;margin-bottom:6px;">
@@ -437,14 +425,8 @@ if stats_data:
                 <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#2A2A2A;letter-spacing:1px;">MUST START</span>
             </div>
         </div>
-
-        <!-- DIVIDER -->
         <div style="width:1px;background:#1E1E1E;"></div>
-
-        <!-- BREAKDOWN -->
-        <div style="min-width:260px;display:flex;flex-direction:column;justify-content:center;">
-            {comp_html}
-        </div>
+        <div style="min-width:260px;display:flex;flex-direction:column;justify-content:center;">{comp_html}</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -544,6 +526,7 @@ with tab_def:
                 save_prefs(prefs)
 
             st.markdown('<div style="height:20px;"></div>', unsafe_allow_html=True)
+            st.markdown('<div style="font-family:\'IBM Plex Mono\',monospace;font-size:9px;color:#FF3300;letter-spacing:2px;margin-bottom:6px;">STEP 3 — GENERATE</div>', unsafe_allow_html=True)
             gen_btn = st.button(
                 "GENERATE CARD",
                 disabled=not selected_slugs,
