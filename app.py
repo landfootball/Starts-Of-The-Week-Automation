@@ -260,10 +260,11 @@ if stats_data:
 
     with pcol2:
         bd = pickle_result["breakdown"]
-        b1, b2, b3 = st.columns(3)
-        b1.metric("Defense", f"{bd['defense_score']} / 10", f"{int(bd['defense_weight']*100)}% weight")
-        b2.metric("Game Total", f"{bd['game_total_score']} / 10", f"{int(bd['game_total_weight']*100)}% weight")
-        b3.metric("Implied Total", f"{bd['implied_total_score']} / 10", f"{int(bd['implied_total_weight']*100)}% weight")
+        b1, b2, b3, b4 = st.columns(4)
+        b1.metric("FPA",          f"{bd['fantasy_points_allowed_score']} / 10", f"{int(bd['fantasy_points_allowed_weight']*100)}% weight")
+        b2.metric("Defense",      f"{bd['defense_bundle_score']} / 10",         f"{int(bd['defense_bundle_weight']*100)}% weight")
+        b3.metric("Implied Total",f"{bd['implied_total_score']} / 10",           f"{int(bd['implied_total_weight']*100)}% weight")
+        b4.metric("Game O/U",     f"{bd['game_total_score']} / 10",             f"{int(bd['game_total_weight']*100)}% weight")
 
 else:
     st.warning("No stats data loaded. Run the weekly update or trigger it from GitHub Actions.")

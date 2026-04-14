@@ -74,6 +74,41 @@ STATS = {
         "positions": ["QB", "RB", "WR", "TE"],
         "higher_is_better": True,
     },
+    # ── New slugs added for Pickle Score v2 ───────────────────────────────────
+    "opponent-average-team-passer-rating": {
+        "label": "Passer Rating Allowed",
+        "positions": ["QB", "WR", "TE"],
+        "higher_is_better": True,   # more QB rating allowed = better matchup
+    },
+    "sacks-per-game": {
+        "label": "Sacks/G (defense)",
+        "positions": ["QB"],
+        # Negative factor: more sacks forced = worse for fantasy QB.
+        # higher_is_better=False means we do NOT invert the TeamRankings rank,
+        # so rank 1 (most sacks) stays rank 1 in our data.
+        "higher_is_better": False,
+    },
+    "interceptions-per-game": {
+        "label": "INTs Forced/G (defense)",
+        "positions": ["QB"],
+        # Negative factor: same logic as sacks-per-game above.
+        "higher_is_better": False,
+    },
+    "opponent-red-zone-scoring-pct": {
+        "label": "Red Zone TD% Allowed",
+        "positions": ["QB", "RB", "WR", "TE"],
+        "higher_is_better": True,   # more red zone TDs allowed = better matchup
+    },
+    "opponent-pass-attempts-per-game": {
+        "label": "Pass Attempts Allowed/G",
+        "positions": ["QB", "WR", "TE"],
+        "higher_is_better": True,
+    },
+    "opponent-touchdowns-per-game": {
+        "label": "Total TDs Allowed/G",
+        "positions": ["QB", "RB", "WR", "TE"],
+        "higher_is_better": True,
+    },
 }
 
 BASE_URL = "https://www.teamrankings.com/nfl/stat/{slug}"
@@ -194,14 +229,19 @@ def scrape_all_stats() -> dict:
             if not canonical:
                 continue
 
-            # TeamRankings rank 1 = fewest allowed (best defense = worst fantasy matchup).
-            # Invert so that rank 1 in our system = most allowed = best fantasy matchup.
-            inverted_rank = 33 - row["rank"]
+            # For opponent-* stats: rank 1 = fewest allowed (best defense = worst matchup).
+            # Invert so rank 1 in our data = most allowed = best fantasy matchup.
+            # For negative factors (sacks, INTs): rank 1 = most forced = worst matchup.
+            # Do NOT invert these — keep natural rank so higher_is_better=False works correctly.
+            if meta.get("higher_is_better", True):
+                stored_rank = 33 - row["rank"]
+            else:
+                stored_rank = row["rank"]
             output[canonical][slug] = {
                 "label": meta["label"],
                 "value": _parse_value(row["value"]),
                 "value_display": row["value"],
-                "rank": inverted_rank,
+                "rank": stored_rank,
                 "higher_is_better": meta["higher_is_better"],
                 "positions": meta["positions"],
             }
