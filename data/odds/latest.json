@@ -1,4 +1,7 @@
 {
   "games": [],
-  "teams": {}
+  "teams": {},
+  "_meta": {
+    "bookmaker": "fanduel"
+  }
 }
