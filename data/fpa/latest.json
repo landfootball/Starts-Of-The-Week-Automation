@@ -117,7 +117,7 @@
     },
     "RB": {
       "avg": 22.2,
-      "rank": 15,
+      "rank": 16,
       "games": 17
     },
     "WR": {
@@ -227,7 +227,7 @@
     },
     "RB": {
       "avg": 19.5,
-      "rank": 26,
+      "rank": 27,
       "games": 17
     },
     "WR": {
@@ -249,7 +249,7 @@
     },
     "RB": {
       "avg": 21.9,
-      "rank": 16,
+      "rank": 17,
       "games": 17
     },
     "WR": {
@@ -336,8 +336,8 @@
       "games": 17
     },
     "RB": {
-      "avg": 19.4,
-      "rank": 27,
+      "avg": 19.5,
+      "rank": 26,
       "games": 17
     },
     "WR": {
@@ -666,8 +666,8 @@
       "games": 17
     },
     "RB": {
-      "avg": 21.8,
-      "rank": 17,
+      "avg": 22.3,
+      "rank": 15,
       "games": 17
     },
     "WR": {
@@ -704,7 +704,7 @@
     }
   },
   "_meta": {
-    "scraped_at": "2026-04-27",
+    "scraped_at": "2026-04-28",
     "season": 2025,
     "scoring": "PPR",
     "source": "fftoday.com (LeagueID=107644)"
