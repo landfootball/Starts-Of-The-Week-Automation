@@ -27,3 +27,4 @@ env/
 
 # Config state (user-specific, not committed)
 config/stat_preferences.json
+node_modules/
