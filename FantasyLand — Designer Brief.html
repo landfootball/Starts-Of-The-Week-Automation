@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>FantasyLand — Designer Brief</title>
+<style>
+  body { font-family: -apple-system, Arial, sans-serif; max-width: 860px; margin: 60px auto; padding: 0 40px 120px; color: #1a1a1a; line-height: 1.6; }
+  h1 { font-size: 32px; font-weight: 800; margin-bottom: 6px; }
+  .subtitle { color: #666; font-size: 15px; margin-bottom: 60px; }
+  h2 { font-size: 22px; font-weight: 800; margin-top: 56px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 3px solid #1a1a1a; }
+  h3 { font-size: 16px; font-weight: 700; margin-top: 32px; margin-bottom: 8px; color: #333; }
+  p { margin-bottom: 14px; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+  th { background: #1a1a1a; color: white; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 9px 12px; border-bottom: 1px solid #e5e5e5; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+  .yes { color: #166534; font-weight: 700; }
+  .no { color: #991B1B; font-weight: 700; }
+  .callout { background: #FEF9C3; border-left: 4px solid #854D0E; padding: 14px 18px; margin: 20px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
+  .callout strong { color: #854D0E; }
+  ul { padding-left: 24px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: monospace; }
+  .zone { background: #f5f5f5; border-radius: 8px; padding: 16px 20px; margin: 14px 0; }
+  .zone-title { font-weight: 800; font-size: 14px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .checklist li { list-style: none; padding-left: 4px; }
+  .checklist li::before { content: "☐  "; font-size: 16px; }
+  @media print { body { margin: 40px; } }
+</style>
+</head>
+<body>
+
+<h1>FantasyLand — Designer Brief</h1>
+<div class="subtitle">Card Template System · Prepared for the Graphic Designer · April 2026</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>1. What You're Making</h2>
+
+<p>You're designing <strong>4 card templates</strong> for an automated graphics system. The system is built in Python and uses your designs as the visual blueprint — it reads your exact specs (colors, fonts, sizes, positions) and generates PNG images automatically every week.</p>
+
+<p><strong>You design once. The system produces hundreds of cards</strong> — one per matchup, per team, per week. You never have to manually swap in team names, logos, stats, or colors. The system handles all of that.</p>
+
+<p>The 4 cards are:</p>
+<ul>
+  <li><strong>Card 1 — Defensive Stats Card:</strong> shows a team's defensive stats with rank badges</li>
+  <li><strong>Card 2 — Player Log Card:</strong> shows recent player performances against a defense</li>
+  <li><strong>Card 3 — Pickle Score Card:</strong> shows the Pickles matchup verdict and score breakdown</li>
+  <li><strong>Card 4 — Odds Card:</strong> shows betting odds and implied totals for the matchup</li>
+</ul>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>2. Artboard Setup</h2>
+
+<table>
+  <tr><th>Setting</th><th>Value</th></tr>
+  <tr><td>Width</td><td><strong>1000px</strong></td></tr>
+  <tr><td>Height</td><td><strong>Variable — see per-card specs below</strong></td></tr>
+  <tr><td>Color Mode</td><td><strong>RGB</strong> (not CMYK — this is screen output only)</td></tr>
+  <tr><td>Resolution</td><td><strong>72 PPI</strong></td></tr>
+  <tr><td>Units</td><td><strong>Pixels throughout</strong> — switch Illustrator to px before starting</td></tr>
+</table>
+
+<p>Design <strong>one artboard per card type</strong>. Add a <strong>Spec Sheet artboard</strong> directly alongside each one in the same file.</p>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>3. The Most Important Rule — Dynamic Elements</h2>
+
+<div class="callout"><strong>The team color, team logo, and all data are variables.</strong> Every card gets generated for all 32 NFL teams with their own colors and logos — the system already has all of these. Your job is to show WHERE they go and HOW BIG they are. You only need to design one version of each card.</div>
+
+<p>Use Cowboys blue <code>#003594</code> as the placeholder team color. Wherever a team color appears, label it clearly in your spec sheet: <em>"TEAM PRIMARY COLOR — SWAPPED BY SYSTEM"</em></p>
+
+<p>Same rule applies to:</p>
+<ul>
+  <li><strong>Team logo</strong> — draw a placeholder box at the exact size and position, labeled <em>"TEAM LOGO — PNG"</em></li>
+  <li><strong>Team name</strong> — placeholder text at exact font/size/position</li>
+  <li><strong>All stat values, player names, scores, ranks</strong> — placeholder text with exact specs</li>
+</ul>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>4. What the System CAN and CANNOT Render</h2>
+
+<p>The Python image library draws everything programmatically. It is <strong>not a browser</strong> — it cannot render CSS-style effects. Every visual effect must be achievable with a flat solid shape.</p>
+
+<table>
+  <tr><th>✅ YES — Fully Supported</th><th>❌ NO — Will Not Render</th></tr>
+  <tr><td>Solid fill colors</td><td class="no">Drop shadows</td></tr>
+  <tr><td>Flat rectangles and rounded rectangles</td><td class="no">Blur or glow effects</td></tr>
+  <tr><td>Solid borders / strokes</td><td class="no">Gradient fills</td></tr>
+  <tr><td>Text at any size, weight, color</td><td class="no">Transparency / opacity on text</td></tr>
+  <tr><td>PNG images pasted flat</td><td class="no">Image masks or clipping masks on logos</td></tr>
+  <tr><td>Flat color backgrounds</td><td class="no">Inner shadows</td></tr>
+  <tr><td>Simple solid color overlays</td><td class="no">Gradient text</td></tr>
+</table>
+
+<p><strong>If an effect requires a blur, shadow, or opacity slider in Illustrator — flag it and we'll find a flat alternative.</strong></p>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>5. Fonts</h2>
+
+<p>Every font must be:</p>
+<ul>
+  <li>Available as a <strong>.ttf or .otf file</strong> (downloaded to your machine and shared with us alongside the design)</li>
+  <li>A standard weight — <strong>no variable fonts</strong></li>
+  <li><strong>Maximum 2 fonts per card</strong> (one display/heading, one body/label)</li>
+</ul>
+
+<p>Recommended free fonts (all available at <strong>fonts.google.com</strong> — download the .ttf files from there):</p>
+
+<table>
+  <tr><th>Font Name</th><th>Best Use</th></tr>
+  <tr><td>Bebas Neue</td><td>Team name, large display headings</td></tr>
+  <tr><td>Anton</td><td>Team name, large display headings</td></tr>
+  <tr><td>Barlow Condensed</td><td>Stats, labels, condensed layouts</td></tr>
+  <tr><td>Oswald</td><td>Team name, stat values</td></tr>
+  <tr><td>Nunito</td><td>Labels, eyebrows, footer text</td></tr>
+  <tr><td>Lora (Italic Bold)</td><td>Score numbers, italic serif data</td></tr>
+</table>
+
+<p>You can choose any combination — but <strong>share the actual .ttf/.otf files</strong> along with the Illustrator file.</p>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>6. Card Specs</h2>
+
+<h3>Card 1 — Defensive Stats Card</h3>
+<p><strong>Artboard: 1000 × 700px</strong> (for 4 stat rows — the system stretches for more rows automatically)</p>
+
+<div class="zone">
+  <div class="zone-title">Zone 1 — Header (~160px tall)</div>
+  <ul>
+    <li>Team color accent bar — full width, ~8px tall, at very top</li>
+    <li>Team logo placeholder — left-aligned, <strong>90×90px</strong>, ~20px from left edge, vertically centred in header</li>
+    <li>Eyebrow text — small caps label above team name (e.g. "WR MATCHUP STATS")</li>
+    <li>Team name — large display font</li>
+    <li>Subtitle — small text below team name (e.g. "Opposing Defense · 2025 Season Weeks 1–18")</li>
+    <li>Divider line — full width, at bottom of header zone</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 2 — Stat Rows (~80px each, repeating)</div>
+  <ul>
+    <li>Left: stat label text (e.g. "Pass Yards Allowed / Game")</li>
+    <li>Right: stat value (large number) + rank badge pill, side by side</li>
+    <li>Rank badge: rounded rectangle pill — <strong>3 color states:</strong> GREEN (ranks 1–10), YELLOW (11–20), RED (21–32). Design all 3 versions.</li>
+    <li>Thin divider line between each row</li>
+    <li><strong>Design one row — it repeats. Note the exact height.</strong></li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 3 — Pickles Strip (~70px tall)</div>
+  <ul>
+    <li>Slightly different background shade to the stat rows (darker or subtly different)</li>
+    <li>Left: pickle emoji placeholder + "PICKLES SAYS —" label + verdict text italic (e.g. <em>"Must-Start"</em>)</li>
+    <li>Right: score number large (e.g. "8.4") + "/10" small beside it</li>
+    <li>Divider lines above and below the strip</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 4 — Footer (~44px tall)</div>
+  <ul>
+    <li>Left: season/week text (e.g. "2025 SEASON · WEEKS 1–18")</li>
+    <li>Right: FantasyLand logo placeholder box — <strong>~120×20px</strong></li>
+    <li>Subtle top divider</li>
+  </ul>
+</div>
+
+---
+
+<h3>Card 2 — Player Log Card</h3>
+<p><strong>Artboard: 1000 × 780px</strong> (for 4 player rows)</p>
+
+<div class="zone">
+  <div class="zone-title">Zone 1 — Header (~150px) — Same as Card 1</div>
+  <ul>
+    <li>Team color accent bar, logo, eyebrow, team name, subtitle</li>
+    <li>Subtitle here: "Recent WR Performances Against This Defense"</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 2 — Section Strip (~34px)</div>
+  <ul>
+    <li>Slightly darker band, full width</li>
+    <li>Small label text: e.g. "LAST 4 WEEKS · PPR SCORING"</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 3 — Player Rows (~110px each, repeating)</div>
+  <ul>
+    <li>Left side: week label small top (e.g. "WEEK 18") → player name large bold → stat line small below (e.g. "9 REC · 122 YDs · 1 TD")</li>
+    <li>Right side: fantasy points number — very large, this is the hero number per row → "FPTS" label tiny below it</li>
+    <li>Points color: GREEN (20+ pts), YELLOW (10–19.9 pts), RED (under 10 pts)</li>
+    <li>Thin divider between rows</li>
+    <li><strong>Design one row — it repeats. Note the exact height.</strong></li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 4 — Pickles Strip — identical to Card 1</div>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 5 — Footer — identical to Card 1</div>
+</div>
+
+---
+
+<h3>Card 3 — Pickle Score Card</h3>
+<p><strong>Artboard: 1000 × 820px</strong></p>
+<p>This card is standalone — it's about Pickles' matchup verdict, not a team's defense. More breathing room, the score number is the centrepiece. Centred layout throughout.</p>
+
+<div class="zone">
+  <div class="zone-title">Zone 1 — Pickles Header (~130px)</div>
+  <ul>
+    <li>Centred layout — no team logo here</li>
+    <li>Pickle emoji placeholder + "Pickles" name in italic display font, centred</li>
+    <li>Subtle divider below</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 2 — Matchup Context (~100px)</div>
+  <ul>
+    <li>Two team logo placeholders side by side, centred, with "AT" or "VS" text between them</li>
+    <li>Each logo: <strong>48×48px</strong></li>
+    <li>Small text below: e.g. "LA Rams at Dallas Cowboys · WR · 2025 Week 18"</li>
+    <li>Divider below</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 3 — Verdict Area (~220px)</div>
+  <ul>
+    <li>Small label centred: "PICKLES SAYS —"</li>
+    <li>Verdict stamp: rounded rectangle box, team color border + light color background tint inside, verdict text large bold inside (e.g. "MUST-START") — stamp rotated slightly (~2°)</li>
+    <li>Design the stamp in green — the system swaps border/fill/text color based on verdict (green = must-start, yellow = caution, red = sit him)</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 4 — Score Number (~120px)</div>
+  <ul>
+    <li>Hero number centred, very large (e.g. "8.4") — biggest text on the card</li>
+    <li>Score bar below: full-width horizontal track, filled portion in verdict color</li>
+    <li>Small labels at each end of the bar: "1 — SIT HIM" left, "10 — MUST-START" right</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 5 — Breakdown Row (~100px)</div>
+  <ul>
+    <li>3 equal columns separated by vertical dividers</li>
+    <li>Each column: label (DEFENSE / GAME TOTAL / IMPLIED TOTAL) → sub-score number → weight label ("50% weight" etc.)</li>
+    <li>Horizontal divider above entire row</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 6 — Footer — identical to Cards 1 & 2</div>
+</div>
+
+---
+
+<h3>Card 4 — Odds Card</h3>
+<p><strong>Artboard: 1000 × 620px</strong></p>
+
+<div class="zone">
+  <div class="zone-title">Zone 1 — Header (~150px) — Same as Card 1</div>
+  <ul>
+    <li>Team color accent bar, logo, eyebrow (e.g. "GAME ODDS"), team name, subtitle (e.g. "Betting Lines · Week 18")</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 2 — Odds Rows (~80px each)</div>
+  <ul>
+    <li>Same layout as stat rows on Card 1</li>
+    <li>Stats here: Game Total (O/U), Team Implied Total, Spread, Moneyline</li>
+    <li>No rank badges on this card — just label + value, right-aligned</li>
+  </ul>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 3 — Pickles Strip — identical to Card 1</div>
+</div>
+
+<div class="zone">
+  <div class="zone-title">Zone 4 — Footer — identical to Card 1</div>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>7. Spec Sheet — Required Per Card</h2>
+
+<p>On a separate artboard next to each card, provide this table filled in completely:</p>
+
+<table>
+  <tr><th>Element</th><th>Font Name</th><th>Weight</th><th>Size (px)</th><th>Color (hex)</th><th>Notes</th></tr>
+  <tr><td>Team Name</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Eyebrow Label</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Subtitle</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Stat Label</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Stat Value</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Rank Badge Text</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Rank Badge — Green background</td><td></td><td></td><td></td><td>#______</td><td></td></tr>
+  <tr><td>Rank Badge — Green text</td><td></td><td></td><td></td><td>#______</td><td></td></tr>
+  <tr><td>Rank Badge — Yellow background</td><td></td><td></td><td></td><td>#______</td><td></td></tr>
+  <tr><td>Rank Badge — Yellow text</td><td></td><td></td><td></td><td>#______</td><td></td></tr>
+  <tr><td>Rank Badge — Red background</td><td></td><td></td><td></td><td>#______</td><td></td></tr>
+  <tr><td>Rank Badge — Red text</td><td></td><td></td><td></td><td>#______</td><td></td></tr>
+  <tr><td>Pickles verdict text</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Pickles score number</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Footer text</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Card background</td><td>—</td><td>—</td><td>—</td><td>#______</td><td></td></tr>
+  <tr><td>Stat row divider color</td><td>—</td><td>—</td><td>—</td><td>#______</td><td></td></tr>
+  <tr><td>Pickles strip background</td><td>—</td><td>—</td><td>—</td><td>#______</td><td></td></tr>
+  <tr><td>Team color placeholder</td><td>—</td><td>—</td><td>—</td><td>#003594</td><td>SWAPPED BY SYSTEM</td></tr>
+</table>
+
+<p>Also note these measurements separately:</p>
+<ul>
+  <li><strong>Card padding:</strong> px from card edge to content — left / right / top / bottom</li>
+  <li><strong>Stat row height:</strong> exact px</li>
+  <li><strong>Player row height:</strong> exact px</li>
+  <li><strong>Rank badge corner radius:</strong> exact px</li>
+  <li><strong>Card corner radius:</strong> exact px</li>
+  <li><strong>Logo bounding box:</strong> exact width × height</li>
+  <li><strong>Accent bar height:</strong> exact px</li>
+  <li><strong>Left color strip width (if used):</strong> exact px</li>
+</ul>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>8. Layer Naming in Illustrator</h2>
+
+<p>Name your layers clearly — this is what we reference when translating to code:</p>
+
+<table>
+  <tr><th>Layer Name</th><th>What It Is</th></tr>
+  <tr><td><code>Header / AccentBar</code></td><td>Top color strip</td></tr>
+  <tr><td><code>Header / LogoPlaceholder</code></td><td>Box where team logo goes</td></tr>
+  <tr><td><code>Header / EyebrowText</code></td><td>Small label above team name</td></tr>
+  <tr><td><code>Header / TeamName</code></td><td>Large team name text</td></tr>
+  <tr><td><code>Header / Subtitle</code></td><td>Small subtitle text</td></tr>
+  <tr><td><code>Header / Divider</code></td><td>Line below header</td></tr>
+  <tr><td><code>StatRow / Background</code></td><td>Row background (if any)</td></tr>
+  <tr><td><code>StatRow / Label</code></td><td>Stat name text</td></tr>
+  <tr><td><code>StatRow / Value</code></td><td>Stat number</td></tr>
+  <tr><td><code>StatRow / RankBadge-Green</code></td><td>Green pill</td></tr>
+  <tr><td><code>StatRow / RankBadge-Yellow</code></td><td>Yellow pill</td></tr>
+  <tr><td><code>StatRow / RankBadge-Red</code></td><td>Red pill</td></tr>
+  <tr><td><code>StatRow / Divider</code></td><td>Line between rows</td></tr>
+  <tr><td><code>PicklesStrip / Background</code></td><td>Strip background</td></tr>
+  <tr><td><code>PicklesStrip / Verdict</code></td><td>Verdict text</td></tr>
+  <tr><td><code>PicklesStrip / Score</code></td><td>Score number</td></tr>
+  <tr><td><code>Footer / SeasonText</code></td><td>Bottom left text</td></tr>
+  <tr><td><code>Footer / LogoPlaceholder</code></td><td>FantasyLand logo box</td></tr>
+</table>
+
+<!-- ─────────────────────────────────────────── -->
+<h2>9. Deliverable Checklist</h2>
+
+<ul class="checklist">
+  <li>4 Illustrator artboards (one per card) — in one file or separate files</li>
+  <li>Spec sheet artboard alongside each card with all values filled in</li>
+  <li>All font .ttf or .otf files in a folder</li>
+  <li>No effects that can't be rendered flat (no shadows, blurs, glows, gradients)</li>
+  <li>Every team-color element labeled "TEAM PRIMARY COLOR — SWAPPED BY SYSTEM"</li>
+  <li>Every placeholder labeled with what it represents</li>
+  <li>Exact padding, row height, radius, font size, and hex values all documented</li>
+  <li>All 3 rank badge color states designed (green / yellow / red)</li>
+</ul>
+
+<div class="callout"><strong>Once these files come back:</strong> the spec sheet gets translated directly into the card generator code. The system already has all 32 NFL team logos and color codes — your template just needs to show where they go and how big they are.</div>
+
+</body>
+</html>

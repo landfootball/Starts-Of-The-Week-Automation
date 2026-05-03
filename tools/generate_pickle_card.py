@@ -40,16 +40,20 @@ from card_utils import (
 
 OUTPUT_DIR = ROOT / "output"
 
-# Score tier colors (same as app.py)
+# Score tier colors (matches app.py)
 def _score_color(score: float) -> str:
-    if score >= 8.0:
-        return "#2E7D32"   # green
-    elif score >= 6.0:
-        return "#E65100"   # orange
-    elif score >= 4.0:
-        return "#F57C00"   # amber
+    if score >= 9.0:
+        return "#00C853"   # GOAT MATCHUP — bright green
+    elif score >= 7.8:
+        return "#43A047"   # GREAT MATCHUP — medium green
+    elif score >= 6.2:
+        return "#29B6F6"   # SOLID MATCHUP — blue
+    elif score >= 4.8:
+        return "#FFD600"   # NEUTRAL MATCHUP — amber
+    elif score >= 3.5:
+        return "#FF6D00"   # TOUGH MATCHUP — orange
     else:
-        return "#C62828"   # red
+        return "#FF1744"   # BRUTAL MATCHUP — red
 
 
 def generate_pickle_card(

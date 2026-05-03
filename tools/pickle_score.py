@@ -10,11 +10,13 @@ Components and weights:
 Final formula:
   score = clamp(1.0, 10.0, 0.40*FPA + 0.30*DEF + 0.20*IMPLIED + 0.10*OU)
 
-Labels:
-  8.0–10.0: "Pickles says MUST-START 🥒"
-  6.0–7.9:  "Pickles says SOLID START"
-  4.0–5.9:  "Pickles says PROCEED WITH CAUTION"
-  1.0–3.9:  "Pickles says YOU'RE IN A PICKLE — sit him"
+Labels (matchup quality only):
+  9.0–10.0: "GOAT MATCHUP"
+  7.8–8.9:  "GREAT MATCHUP"
+  6.2–7.7:  "SOLID MATCHUP"
+  4.8–6.1:  "NEUTRAL MATCHUP"
+  3.5–4.7:  "TOUGH MATCHUP"  (sub-label: "You're in a Pickle")
+  1.0–3.4:  "BRUTAL MATCHUP"
 
 Usage:
     from tools.pickle_score import calculate_pickle_score
@@ -195,14 +197,25 @@ def _implied_total_score(off_team_name: str, odds_data: dict) -> float:
 
 
 def _get_label(score: float) -> str:
-    if score >= 8.0:
-        return "Pickles says MUST-START 🥒"
-    elif score >= 6.0:
-        return "Pickles says SOLID START"
-    elif score >= 4.0:
-        return "Pickles says PROCEED WITH CAUTION"
+    if score >= 9.0:
+        return "Pickles says GOAT MATCHUP"
+    elif score >= 7.8:
+        return "Pickles says GREAT MATCHUP"
+    elif score >= 6.2:
+        return "Pickles says SOLID MATCHUP"
+    elif score >= 4.8:
+        return "Pickles says NEUTRAL MATCHUP"
+    elif score >= 3.5:
+        return "Pickles says TOUGH MATCHUP"
     else:
-        return "Pickles says YOU'RE IN A PICKLE — sit him"
+        return "Pickles says BRUTAL MATCHUP"
+
+
+def _get_sublabel(score: float) -> str | None:
+    """Returns a sub-label for TOUGH MATCHUP only, None otherwise."""
+    if 3.5 <= score < 4.8:
+        return "You're in a Pickle"
+    return None
 
 
 # ── Validation ─────────────────────────────────────────────────────────────────
@@ -249,7 +262,8 @@ def calculate_pickle_score(
     Returns:
         {
           "score": 7.2,
-          "label": "Pickles says SOLID START",
+          "label": "SOLID MATCHUP",
+          "sublabel": None,          # "You're in a Pickle" for TOUGH MATCHUP only
           "breakdown": {
             "fantasy_points_allowed_score": 5.0,
             "defense_bundle_score": 8.1,
@@ -293,11 +307,13 @@ def calculate_pickle_score(
     )
 
     score = round(max(1.0, min(10.0, raw)), 1)
-    label = _get_label(score)
+    label    = _get_label(score)
+    sublabel = _get_sublabel(score)
 
     return {
         "score": score,
         "label": label,
+        "sublabel": sublabel,
         "breakdown": {
             "fantasy_points_allowed_score": fpa_score,
             "defense_bundle_score": def_score,

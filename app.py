@@ -412,20 +412,25 @@ if stats_data:
         off_team_name=off_team,
         position=position,
     )
-    score = pickle_result["score"]
-    label = pickle_result["label"]
-    bd    = pickle_result["breakdown"]
+    score    = pickle_result["score"]
+    label    = pickle_result["label"]
+    sublabel = pickle_result.get("sublabel")
+    bd       = pickle_result["breakdown"]
 
-    if score >= 8.0:
-        sc, sb = "#00C853", "#001508"
-    elif score >= 6.0:
-        sc, sb = "#FF3300", "#140500"
-    elif score >= 4.0:
-        sc, sb = "#FFD600", "#141100"
+    if score >= 9.0:
+        sc, sb = "#00C853", "#001508"   # GOAT MATCHUP — bright green
+    elif score >= 7.8:
+        sc, sb = "#43A047", "#011501"   # GREAT MATCHUP — medium green
+    elif score >= 6.2:
+        sc, sb = "#29B6F6", "#001018"   # SOLID MATCHUP — blue
+    elif score >= 4.8:
+        sc, sb = "#FFD600", "#141100"   # NEUTRAL MATCHUP — amber
+    elif score >= 3.5:
+        sc, sb = "#FF6D00", "#140800"   # TOUGH MATCHUP — orange
     else:
-        sc, sb = "#FF1744", "#140007"
+        sc, sb = "#FF1744", "#140007"   # BRUTAL MATCHUP — red
 
-    clean_label = label.replace("🥒", "").replace("Pickles says ", "").strip()
+    clean_label = label.replace("Pickles says ", "").strip()  # card verdict (no prefix)
     bar_pct     = int((score / 10) * 100)
     reasons     = _pickle_reasons(position, bd, def_team, off_team)
 
@@ -437,28 +442,35 @@ if stats_data:
         for r in reasons
     )
 
-    st.markdown(f"""
-    <div style="background:{sb};border-left:5px solid {sc};padding:28px 36px;margin:24px var(--page-pad) 0 var(--page-pad);display:flex;align-items:stretch;gap:36px;">
-        <div style="min-width:110px;display:flex;flex-direction:column;justify-content:center;">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:96px;color:{sc};line-height:0.9;letter-spacing:-2px;">{score}</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#3A3A3A;letter-spacing:1.5px;text-transform:uppercase;margin-top:8px;">Pickle Score</div>
-        </div>
-        <div style="width:1px;background:#1E1E1E;"></div>
-        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
-            <div>
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:{sc};letter-spacing:2px;line-height:1;">{clean_label}</div>
-                <div style="background:#1E1E1E;height:4px;width:100%;border-radius:2px;margin-top:10px;position:relative;">
-                    <div style="position:absolute;left:0;top:0;bottom:0;width:{bar_pct}%;background:{sc};border-radius:2px;"></div>
-                </div>
-                <div style="display:flex;justify-content:space-between;margin-top:5px;">
-                    <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#2A2A2A;">In a Pickle</span>
-                    <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#2A2A2A;">Must Start</span>
-                </div>
-            </div>
-            <div>{reason_html}</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    sublabel_html = (
+        '<div style="margin-top:6px;font-family:IBM Plex Mono,monospace;font-size:10px;color:'
+        + sc + ';letter-spacing:1px;">You\'re in a Pickle</div>'
+    ) if sublabel else ''
+
+    st.markdown(
+        '<div style="background:' + sb + ';border-left:5px solid ' + sc + ';padding:28px 36px;margin:24px var(--page-pad) 0 var(--page-pad);display:flex;align-items:stretch;gap:36px;">'
+        '<div style="min-width:110px;display:flex;flex-direction:column;justify-content:center;">'
+        '<div style="font-family:Bebas Neue,sans-serif;font-size:96px;color:' + sc + ';line-height:0.9;letter-spacing:-2px;">' + str(score) + '</div>'
+        '<div style="font-family:IBM Plex Mono,monospace;font-size:9px;color:#3A3A3A;letter-spacing:1.5px;text-transform:uppercase;margin-top:8px;">Pickle Score</div>'
+        '</div>'
+        '<div style="width:1px;background:#1E1E1E;"></div>'
+        '<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">'
+        '<div>'
+        '<div style="font-family:Bebas Neue,sans-serif;font-size:36px;color:' + sc + ';letter-spacing:2px;line-height:1;">' + label + '</div>'
+        '<div style="background:#1E1E1E;height:4px;width:100%;border-radius:2px;margin-top:10px;position:relative;">'
+        '<div style="position:absolute;left:0;top:0;bottom:0;width:' + str(bar_pct) + '%;background:' + sc + ';border-radius:2px;"></div>'
+        '</div>'
+        '<div style="display:flex;justify-content:space-between;margin-top:5px;">'
+        '<span style="font-family:IBM Plex Mono,monospace;font-size:9px;color:#2A2A2A;">Brutal Matchup</span>'
+        '<span style="font-family:IBM Plex Mono,monospace;font-size:9px;color:#2A2A2A;">GOAT Matchup</span>'
+        '</div>'
+        + sublabel_html +
+        '</div>'
+        '<div>' + reason_html + '</div>'
+        '</div>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
 
     # Collapsible breakdown
     components = [
@@ -547,7 +559,7 @@ with tab_pickle:
 
         with right_pkl:
             if "pickle_card_bytes" in st.session_state:
-                st.image(st.session_state["pickle_card_bytes"], use_column_width="always")
+                st.image(st.session_state["pickle_card_bytes"], use_container_width=True)
                 st.download_button(
                     "Download PNG",
                     st.session_state["pickle_card_bytes"],
@@ -668,7 +680,7 @@ with tab_def:
 
         with right_col:
             if "def_card_bytes" in st.session_state:
-                st.image(st.session_state["def_card_bytes"], use_column_width="always")
+                st.image(st.session_state["def_card_bytes"], use_container_width=True)
                 st.download_button(
                     "Download PNG",
                     st.session_state["def_card_bytes"],
@@ -760,7 +772,7 @@ with tab_player:
 
     with right_col2:
         if "player_card_bytes" in st.session_state:
-            st.image(st.session_state["player_card_bytes"], use_column_width="always")
+            st.image(st.session_state["player_card_bytes"], use_container_width=True)
             st.download_button(
                 "Download PNG",
                 st.session_state["player_card_bytes"],
@@ -827,7 +839,7 @@ with tab_odds:
 
     with right_col3:
         if "odds_card_bytes" in st.session_state:
-            st.image(st.session_state["odds_card_bytes"], use_column_width="always")
+            st.image(st.session_state["odds_card_bytes"], use_container_width=True)
             st.download_button(
                 "Download PNG",
                 st.session_state["odds_card_bytes"],
