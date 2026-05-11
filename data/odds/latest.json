@@ -1,6 +1,52 @@
 {
-  "games": [],
-  "teams": {},
+  "games": [
+    {
+      "home_team": "Los Angeles Chargers",
+      "away_team": "San Francisco 49ers",
+      "game_total": 48.5,
+      "home_implied": 27.7,
+      "away_implied": 20.8,
+      "game_total_rank": 1
+    },
+    {
+      "home_team": "New York Giants",
+      "away_team": "Dallas Cowboys",
+      "game_total": 47.5,
+      "home_implied": 21.7,
+      "away_implied": 25.8,
+      "game_total_rank": 2
+    }
+  ],
+  "teams": {
+    "Los Angeles Chargers": {
+      "implied_total": 27.7,
+      "implied_total_rank": 1,
+      "game_total": 48.5,
+      "game_total_rank": 1,
+      "opponent": "San Francisco 49ers"
+    },
+    "Dallas Cowboys": {
+      "implied_total": 25.8,
+      "implied_total_rank": 2,
+      "game_total": 47.5,
+      "game_total_rank": 2,
+      "opponent": "New York Giants"
+    },
+    "New York Giants": {
+      "implied_total": 21.7,
+      "implied_total_rank": 3,
+      "game_total": 47.5,
+      "game_total_rank": 2,
+      "opponent": "Dallas Cowboys"
+    },
+    "San Francisco 49ers": {
+      "implied_total": 20.8,
+      "implied_total_rank": 4,
+      "game_total": 48.5,
+      "game_total_rank": 1,
+      "opponent": "Los Angeles Chargers"
+    }
+  },
   "_meta": {
     "bookmaker": "fanduel"
   }
