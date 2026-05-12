@@ -3,48 +3,100 @@
     {
       "home_team": "Los Angeles Chargers",
       "away_team": "San Francisco 49ers",
-      "game_total": 48.5,
-      "home_implied": 27.7,
-      "away_implied": 20.8,
-      "game_total_rank": 1
+      "game_total": 49.5,
+      "home_implied": 26.9,
+      "away_implied": 22.6,
+      "game_total_rank": 3
     },
     {
       "home_team": "New York Giants",
       "away_team": "Dallas Cowboys",
-      "game_total": 47.5,
-      "home_implied": 21.7,
-      "away_implied": 25.8,
+      "game_total": 48.5,
+      "home_implied": 20.3,
+      "away_implied": 28.2,
+      "game_total_rank": 5
+    },
+    {
+      "home_team": "Buffalo Bills",
+      "away_team": "Detroit Lions",
+      "game_total": 52.5,
+      "home_implied": 32.0,
+      "away_implied": 20.5,
+      "game_total_rank": 1
+    },
+    {
+      "home_team": "Dallas Cowboys",
+      "away_team": "Baltimore Ravens",
+      "game_total": 50.5,
+      "home_implied": 23.1,
+      "away_implied": 27.4,
       "game_total_rank": 2
+    },
+    {
+      "home_team": "Dallas Cowboys",
+      "away_team": "Philadelphia Eagles",
+      "game_total": 49.5,
+      "home_implied": 25.5,
+      "away_implied": 24.0,
+      "game_total_rank": 4
     }
   ],
   "teams": {
-    "Los Angeles Chargers": {
-      "implied_total": 27.7,
+    "Buffalo Bills": {
+      "implied_total": 32.0,
       "implied_total_rank": 1,
-      "game_total": 48.5,
+      "game_total": 52.5,
       "game_total_rank": 1,
-      "opponent": "San Francisco 49ers"
+      "opponent": "Detroit Lions"
     },
     "Dallas Cowboys": {
-      "implied_total": 25.8,
-      "implied_total_rank": 2,
-      "game_total": 47.5,
-      "game_total_rank": 2,
-      "opponent": "New York Giants"
+      "implied_total": 23.1,
+      "implied_total_rank": 7,
+      "game_total": 48.5,
+      "game_total_rank": 5,
+      "opponent": "Baltimore Ravens"
     },
-    "New York Giants": {
-      "implied_total": 21.7,
+    "Baltimore Ravens": {
+      "implied_total": 27.4,
       "implied_total_rank": 3,
-      "game_total": 47.5,
+      "game_total": 50.5,
       "game_total_rank": 2,
       "opponent": "Dallas Cowboys"
     },
-    "San Francisco 49ers": {
-      "implied_total": 20.8,
+    "Los Angeles Chargers": {
+      "implied_total": 26.9,
       "implied_total_rank": 4,
-      "game_total": 48.5,
-      "game_total_rank": 1,
+      "game_total": 49.5,
+      "game_total_rank": 3,
+      "opponent": "San Francisco 49ers"
+    },
+    "Philadelphia Eagles": {
+      "implied_total": 24.0,
+      "implied_total_rank": 6,
+      "game_total": 49.5,
+      "game_total_rank": 4,
+      "opponent": "Dallas Cowboys"
+    },
+    "San Francisco 49ers": {
+      "implied_total": 22.6,
+      "implied_total_rank": 8,
+      "game_total": 49.5,
+      "game_total_rank": 3,
       "opponent": "Los Angeles Chargers"
+    },
+    "Detroit Lions": {
+      "implied_total": 20.5,
+      "implied_total_rank": 9,
+      "game_total": 52.5,
+      "game_total_rank": 1,
+      "opponent": "Buffalo Bills"
+    },
+    "New York Giants": {
+      "implied_total": 20.3,
+      "implied_total_rank": 10,
+      "game_total": 48.5,
+      "game_total_rank": 5,
+      "opponent": "Dallas Cowboys"
     }
   },
   "_meta": {
