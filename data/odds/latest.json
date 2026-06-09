@@ -244,8 +244,8 @@
       "home_team": "Kansas City Chiefs",
       "away_team": "Indianapolis Colts",
       "game_total": 47.5,
-      "home_implied": 32.6,
-      "away_implied": 14.9,
+      "home_implied": 32.3,
+      "away_implied": 15.2,
       "game_total_rank": 18
     },
     {
@@ -292,8 +292,8 @@
       "home_team": "Detroit Lions",
       "away_team": "New York Giants",
       "game_total": 45.5,
-      "home_implied": 35.6,
-      "away_implied": 9.9,
+      "home_implied": 36.0,
+      "away_implied": 9.5,
       "game_total_rank": 39
     },
     {
@@ -324,8 +324,8 @@
       "home_team": "New York Giants",
       "away_team": "Tennessee Titans",
       "game_total": 45.5,
-      "home_implied": 28.0,
-      "away_implied": 17.5,
+      "home_implied": 27.7,
+      "away_implied": 17.8,
       "game_total_rank": 42
     },
     {
@@ -428,8 +428,8 @@
       "home_team": "Chicago Bears",
       "away_team": "New York Giants",
       "game_total": 45.5,
-      "home_implied": 34.8,
-      "away_implied": 10.7,
+      "home_implied": 34.6,
+      "away_implied": 10.9,
       "game_total_rank": 45
     },
     {
@@ -687,8 +687,8 @@
       "opponent": "Denver Broncos"
     },
     "New York Giants": {
-      "implied_total": 9.9,
-      "implied_total_rank": 144,
+      "implied_total": 9.5,
+      "implied_total_rank": 145,
       "game_total": 38.5,
       "game_total_rank": 75,
       "opponent": "Detroit Lions"
@@ -730,7 +730,7 @@
     },
     "Las Vegas Raiders": {
       "implied_total": 9.5,
-      "implied_total_rank": 145,
+      "implied_total_rank": 144,
       "game_total": 40.5,
       "game_total_rank": 72,
       "opponent": "Los Angeles Chargers"
@@ -757,7 +757,7 @@
       "opponent": "Los Angeles Chargers"
     },
     "Indianapolis Colts": {
-      "implied_total": 14.9,
+      "implied_total": 15.2,
       "implied_total_rank": 127,
       "game_total": 48.5,
       "game_total_rank": 11,
