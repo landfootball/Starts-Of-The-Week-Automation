@@ -148,24 +148,24 @@
       "home_team": "Baltimore Ravens",
       "away_team": "New Orleans Saints",
       "game_total": 46.5,
-      "home_implied": 35.2,
-      "away_implied": 11.3,
+      "home_implied": 35.3,
+      "away_implied": 11.2,
       "game_total_rank": 28
     },
     {
       "home_team": "Chicago Bears",
       "away_team": "Minnesota Vikings",
       "game_total": 45.5,
-      "home_implied": 28.0,
-      "away_implied": 17.5,
+      "home_implied": 28.3,
+      "away_implied": 17.2,
       "game_total_rank": 38
     },
     {
       "home_team": "Houston Texans",
       "away_team": "Cincinnati Bengals",
       "game_total": 46.5,
-      "home_implied": 25.6,
-      "away_implied": 20.9,
+      "home_implied": 26.2,
+      "away_implied": 20.3,
       "game_total_rank": 29
     },
     {
@@ -180,16 +180,16 @@
       "home_team": "New York Giants",
       "away_team": "Green Bay Packers",
       "game_total": 42.5,
-      "home_implied": 12.0,
-      "away_implied": 30.5,
+      "home_implied": 12.2,
+      "away_implied": 30.3,
       "game_total_rank": 65
     },
     {
       "home_team": "New England Patriots",
       "away_team": "Pittsburgh Steelers",
       "game_total": 43.5,
-      "home_implied": 28.9,
-      "away_implied": 14.6,
+      "home_implied": 29.1,
+      "away_implied": 14.4,
       "game_total_rank": 59
     },
     {
@@ -244,16 +244,16 @@
       "home_team": "Kansas City Chiefs",
       "away_team": "Indianapolis Colts",
       "game_total": 47.5,
-      "home_implied": 32.6,
-      "away_implied": 14.9,
+      "home_implied": 32.8,
+      "away_implied": 14.7,
       "game_total_rank": 18
     },
     {
       "home_team": "Los Angeles Chargers",
       "away_team": "New York Giants",
       "game_total": 47.5,
-      "home_implied": 36.6,
-      "away_implied": 10.9,
+      "home_implied": 36.4,
+      "away_implied": 11.1,
       "game_total_rank": 19
     },
     {
@@ -284,8 +284,8 @@
       "home_team": "Pittsburgh Steelers",
       "away_team": "Cincinnati Bengals",
       "game_total": 47.5,
-      "home_implied": 23.5,
-      "away_implied": 24.0,
+      "home_implied": 23.2,
+      "away_implied": 24.3,
       "game_total_rank": 20
     },
     {
@@ -308,8 +308,8 @@
       "home_team": "Jacksonville Jaguars",
       "away_team": "New England Patriots",
       "game_total": 45.5,
-      "home_implied": 23.5,
-      "away_implied": 22.0,
+      "home_implied": 23.7,
+      "away_implied": 21.8,
       "game_total_rank": 41
     },
     {
@@ -340,8 +340,8 @@
       "home_team": "San Francisco 49ers",
       "away_team": "Arizona Cardinals",
       "game_total": 46.5,
-      "home_implied": 38.5,
-      "away_implied": 8.0,
+      "home_implied": 38.7,
+      "away_implied": 7.8,
       "game_total_rank": 33
     },
     {
@@ -420,16 +420,16 @@
       "home_team": "Buffalo Bills",
       "away_team": "New England Patriots",
       "game_total": 49.5,
-      "home_implied": 29.7,
-      "away_implied": 19.8,
+      "home_implied": 29.4,
+      "away_implied": 20.1,
       "game_total_rank": 9
     },
     {
       "home_team": "Chicago Bears",
       "away_team": "New York Giants",
       "game_total": 45.5,
-      "home_implied": 34.6,
-      "away_implied": 10.9,
+      "home_implied": 34.8,
+      "away_implied": 10.7,
       "game_total_rank": 45
     },
     {
@@ -468,16 +468,16 @@
       "home_team": "Minnesota Vikings",
       "away_team": "Miami Dolphins",
       "game_total": 43.5,
-      "home_implied": 33.1,
-      "away_implied": 10.4,
+      "home_implied": 33.3,
+      "away_implied": 10.2,
       "game_total_rank": 61
     },
     {
       "home_team": "San Francisco 49ers",
       "away_team": "Denver Broncos",
       "game_total": 46.5,
-      "home_implied": 26.2,
-      "away_implied": 20.3,
+      "home_implied": 25.6,
+      "away_implied": 20.9,
       "game_total_rank": 35
     },
     {
@@ -516,8 +516,8 @@
       "home_team": "Dallas Cowboys",
       "away_team": "Green Bay Packers",
       "game_total": 52.5,
-      "home_implied": 33.4,
-      "away_implied": 19.1,
+      "home_implied": 33.8,
+      "away_implied": 18.7,
       "game_total_rank": 2
     },
     {
@@ -532,8 +532,8 @@
       "home_team": "Miami Dolphins",
       "away_team": "Cincinnati Bengals",
       "game_total": 49.5,
-      "home_implied": 15.6,
-      "away_implied": 33.9,
+      "home_implied": 15.8,
+      "away_implied": 33.7,
       "game_total_rank": 10
     },
     {
@@ -596,12 +596,19 @@
       "home_team": "Seattle Seahawks",
       "away_team": "San Francisco 49ers",
       "game_total": 48.5,
-      "home_implied": 31.3,
-      "away_implied": 17.2,
+      "home_implied": 30.9,
+      "away_implied": 17.6,
       "game_total_rank": 15
     }
   ],
   "teams": {
+    "San Francisco 49ers": {
+      "implied_total": 17.6,
+      "implied_total_rank": 115,
+      "game_total": 49.5,
+      "game_total_rank": 7,
+      "opponent": "Seattle Seahawks"
+    },
     "Los Angeles Chargers": {
       "implied_total": 18.5,
       "implied_total_rank": 108,
@@ -609,16 +616,9 @@
       "game_total_rank": 7,
       "opponent": "Seattle Seahawks"
     },
-    "San Francisco 49ers": {
-      "implied_total": 17.2,
-      "implied_total_rank": 117,
-      "game_total": 49.5,
-      "game_total_rank": 7,
-      "opponent": "Seattle Seahawks"
-    },
     "Detroit Lions": {
       "implied_total": 21.9,
-      "implied_total_rank": 84,
+      "implied_total_rank": 83,
       "game_total": 48.5,
       "game_total_rank": 12,
       "opponent": "Buffalo Bills"
@@ -638,32 +638,25 @@
       "opponent": "Los Angeles Chargers"
     },
     "Green Bay Packers": {
-      "implied_total": 18.9,
+      "implied_total": 18.7,
       "implied_total_rank": 106,
       "game_total": 51.5,
       "game_total_rank": 3,
-      "opponent": "Cincinnati Bengals"
+      "opponent": "Dallas Cowboys"
     },
     "Chicago Bears": {
       "implied_total": 24.1,
-      "implied_total_rank": 63,
+      "implied_total_rank": 64,
       "game_total": 45.5,
       "game_total_rank": 36,
       "opponent": "Philadelphia Eagles"
     },
     "New England Patriots": {
       "implied_total": 15.7,
-      "implied_total_rank": 125,
+      "implied_total_rank": 126,
       "game_total": 44.5,
       "game_total_rank": 48,
       "opponent": "Seattle Seahawks"
-    },
-    "Cincinnati Bengals": {
-      "implied_total": 20.9,
-      "implied_total_rank": 92,
-      "game_total": 51.5,
-      "game_total_rank": 3,
-      "opponent": "Houston Texans"
     },
     "Dallas Cowboys": {
       "implied_total": 21.3,
@@ -672,9 +665,16 @@
       "game_total_rank": 17,
       "opponent": "Houston Texans"
     },
+    "Cincinnati Bengals": {
+      "implied_total": 20.3,
+      "implied_total_rank": 98,
+      "game_total": 51.5,
+      "game_total_rank": 3,
+      "opponent": "Houston Texans"
+    },
     "Minnesota Vikings": {
-      "implied_total": 17.5,
-      "implied_total_rank": 115,
+      "implied_total": 17.2,
+      "implied_total_rank": 117,
       "game_total": 45.5,
       "game_total_rank": 37,
       "opponent": "Chicago Bears"
@@ -716,7 +716,7 @@
     },
     "Houston Texans": {
       "implied_total": 21.9,
-      "implied_total_rank": 83,
+      "implied_total_rank": 82,
       "game_total": 44.5,
       "game_total_rank": 49,
       "opponent": "Buffalo Bills"
@@ -736,14 +736,14 @@
       "opponent": "Los Angeles Chargers"
     },
     "Pittsburgh Steelers": {
-      "implied_total": 14.6,
-      "implied_total_rank": 128,
+      "implied_total": 14.4,
+      "implied_total_rank": 129,
       "game_total": 41.5,
       "game_total_rank": 69,
       "opponent": "New England Patriots"
     },
     "New Orleans Saints": {
-      "implied_total": 11.3,
+      "implied_total": 11.2,
       "implied_total_rank": 137,
       "game_total": 48.5,
       "game_total_rank": 12,
@@ -757,7 +757,7 @@
       "opponent": "Kansas City Chiefs"
     },
     "Indianapolis Colts": {
-      "implied_total": 14.9,
+      "implied_total": 14.7,
       "implied_total_rank": 127,
       "game_total": 48.5,
       "game_total_rank": 11,
@@ -779,7 +779,7 @@
     },
     "Tennessee Titans": {
       "implied_total": 11.1,
-      "implied_total_rank": 139,
+      "implied_total_rank": 140,
       "game_total": 38.5,
       "game_total_rank": 75,
       "opponent": "Baltimore Ravens"
@@ -799,7 +799,7 @@
       "opponent": "San Francisco 49ers"
     },
     "Arizona Cardinals": {
-      "implied_total": 8.0,
+      "implied_total": 7.8,
       "implied_total_rank": 150,
       "game_total": 46.5,
       "game_total_rank": 27,
