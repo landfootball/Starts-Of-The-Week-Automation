@@ -559,7 +559,7 @@ with tab_pickle:
 
         with right_pkl:
             if "pickle_card_bytes" in st.session_state:
-                st.image(st.session_state["pickle_card_bytes"], use_container_width=True)
+                st.image(st.session_state["pickle_card_bytes"], use_column_width="always")
                 st.download_button(
                     "Download PNG",
                     st.session_state["pickle_card_bytes"],
@@ -680,7 +680,7 @@ with tab_def:
 
         with right_col:
             if "def_card_bytes" in st.session_state:
-                st.image(st.session_state["def_card_bytes"], use_container_width=True)
+                st.image(st.session_state["def_card_bytes"], use_column_width="always")
                 st.download_button(
                     "Download PNG",
                     st.session_state["def_card_bytes"],
@@ -772,7 +772,7 @@ with tab_player:
 
     with right_col2:
         if "player_card_bytes" in st.session_state:
-            st.image(st.session_state["player_card_bytes"], use_container_width=True)
+            st.image(st.session_state["player_card_bytes"], use_column_width="always")
             st.download_button(
                 "Download PNG",
                 st.session_state["player_card_bytes"],
@@ -839,7 +839,7 @@ with tab_odds:
 
     with right_col3:
         if "odds_card_bytes" in st.session_state:
-            st.image(st.session_state["odds_card_bytes"], use_container_width=True)
+            st.image(st.session_state["odds_card_bytes"], use_column_width="always")
             st.download_button(
                 "Download PNG",
                 st.session_state["odds_card_bytes"],
