@@ -49,14 +49,15 @@ C_TAG_BG     = "#1a1a1a"   # eyebrow tag background
 C_NAME       = "#ffffff"   # team name
 C_LABEL      = "#e0e0e0"   # stat label — near-white
 C_VALUE      = "#ffffff"   # stat value
-C_SUBTITLE   = "#7a7a7a"   # subtitle / meta — clearly below label hierarchy
-C_FOOTER     = "#7a7a7a"   # footer
+C_SUBTITLE   = "#999999"   # subtitle / meta — clearly below label hierarchy (6.6:1 on #111, was 4.4:1)
+C_FOOTER     = "#999999"   # footer (6.6:1 on #111, was 4.4:1)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # LAYOUT
 # All logical px; ×SCALE = rendered pixels
 # ─────────────────────────────────────────────────────────────────────────────
-HEADER_H     = 190   # header block — tall enough for name + subtitle + gap
+HEADER_H     = 212   # header block — tall enough for name + subtitle + gap
+                      # (also clears the logo circle's halo — see LOGO_TOP_GAP)
 
 # Header typography anchors — explicit, no eyeballing
 TITLE_TOP_PAD       = 28   # fixed distance from card top to first title line
@@ -64,7 +65,13 @@ TITLE_LINE_HEIGHT   = 52   # fixed line-height for name lines (large font)
 SUBTITLE_Y_OFFSET   = 16   # gap between bottom of last title line and subtitle
 HEADER_TO_TABLE_GAP = 24   # gap between subtitle bottom and first stat row
 
+# Logo vertical placement — anchored below the eyebrow tag (not header midpoint)
+# so the tag and logo circle can never overlap regardless of tag text length.
+LOGO_TOP_GAP = 14    # logical px gap between tag bottom and logo halo top
+LOGO_HALO    =  8    # must match the halo extension in draw_logo_circle()
+
 STATS_PAD_V  =  24   # top/bottom padding inside stat area (above first / below last row)
+COL_HEADER_H =  20   # space reserved above first row for the "RANK" column label
 ROW_H        =  66   # each stat row
 FOOTER_H     =  54   # footer strip
 BOX_MARGIN   =  14   # card edge → stat area horizontal inset
@@ -79,7 +86,11 @@ LOGO_SZ      =  76
 # Column anchors (logical px from card left)
 PILL_W       =  68
 PILL_H       =  24
-PILL_L       = (CARD_W // SCALE) - BOX_MARGIN - 8 - PILL_W
+# Right inset pulls the value+pill block in from the card edge so the
+# label → value → pill reading path is tighter (worst-case label width
+# across positions is ~185px; this keeps a safe ≥24px gap in all cases).
+TABLE_RIGHT_INSET = 64
+PILL_L       = (CARD_W // SCALE) - BOX_MARGIN - TABLE_RIGHT_INSET - PILL_W
 VALUE_R      = PILL_L - 14
 
 # Font sizes
@@ -92,6 +103,7 @@ SZ_LABEL     = 13
 SZ_VALUE     = 22
 SZ_RANK      = 12
 SZ_FOOTER    = 12
+SZ_COL_HEADER =  9   # "RANK" column label above the pills
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ACCENT SYSTEM
@@ -118,11 +130,6 @@ assert ROW_LEFT_ACCENT_MODE in ("all_rows", "none"), \
 def _logo_cx(ox):
     """Logo circle center X — inset from right card edge."""
     return ox + ((CARD_W // SCALE) - BOX_MARGIN - LOGO_OD // 2) * SCALE
-
-
-def _logo_cy(oy):
-    """Logo circle center Y — raised 8px from midpoint for better title balance."""
-    return oy + (HEADER_H // 2 + 2) * SCALE
 
 
 def _fit_name(draw, text: str, max_w_px: int):
@@ -174,7 +181,7 @@ def generate_def_card(
     team_primary = tokens["team_primary"]
 
     # Canvas
-    card_h_l = HEADER_H + STATS_PAD_V + n * ROW_H + STATS_PAD_V + FOOTER_H
+    card_h_l = HEADER_H + COL_HEADER_H + STATS_PAD_V + n * ROW_H + STATS_PAD_V + FOOTER_H
     card_h   = card_h_l * SCALE
     img_w    = CARD_W + OUTER_PAD * 2
     img_h    = card_h + OUTER_PAD * 2
@@ -215,23 +222,18 @@ def generate_def_card(
 
     # Precompute pixel anchors
     logo_cx     = _logo_cx(ox)
-    logo_cy     = _logo_cy(oy)
-    logo_left   = logo_cx - LOGO_OD // 2 * SCALE   # leftmost px of logo circle
-
-    name_x      = ox + SIDE_PAD * SCALE
-    name_max_w  = logo_left - name_x - 10 * SCALE  # stop before circle
 
     box_x0      = ox + BOX_MARGIN * SCALE
     box_x1      = ox + ((CARD_W // SCALE) - BOX_MARGIN) * SCALE
     box_top     = oy + HEADER_H * SCALE
-    box_bottom  = box_top + (STATS_PAD_V + n * ROW_H + STATS_PAD_V) * SCALE
+    box_bottom  = box_top + (COL_HEADER_H + STATS_PAD_V + n * ROW_H + STATS_PAD_V) * SCALE
     footer_top  = box_bottom
 
     px_pill_l   = ox + PILL_L  * SCALE
     px_value_r  = ox + VALUE_R * SCALE
-    rows_top    = box_top + STATS_PAD_V * SCALE
+    rows_top    = box_top + (COL_HEADER_H + STATS_PAD_V) * SCALE
 
-    # ── Eyebrow tag ───────────────────────────────────────────────────────────
+    # ── Eyebrow tag geometry (computed before logo_cy — logo is anchored below it) ──
     ew_font  = load_font("rubik", "semibold", SZ_EYEBROW)
     ew_text  = f"{position} MATCHUP STATS"
     ewbb     = draw.textbbox((0, 0), ew_text, font=ew_font)
@@ -239,9 +241,20 @@ def generate_def_card(
     ew_w     = (ewbb[2] - ewbb[0]) + ew_pad_x * 2
     ew_h     = (ewbb[3] - ewbb[1]) + ew_pad_y * 2
     # Chip: right-align to logo circle right edge, top aligned to title top
-    logo_right = ox + ((CARD_W // SCALE) - BOX_MARGIN) * SCALE  # = box_x1
+    logo_right = box_x1
     ew_x = logo_right - ew_w
     ew_y = oy + TITLE_TOP_PAD * SCALE
+    tag_bottom = ew_y + ew_h
+
+    # Logo circle center Y — anchored below the tag's actual bottom edge (+ gap
+    # + halo radius) so the two elements can never visually overlap.
+    logo_cy   = tag_bottom + (LOGO_TOP_GAP + LOGO_HALO) * SCALE + (LOGO_OD * SCALE) // 2
+    logo_left = logo_cx - LOGO_OD // 2 * SCALE   # leftmost px of logo circle
+
+    name_x      = ox + SIDE_PAD * SCALE
+    name_max_w  = logo_left - name_x - 10 * SCALE  # stop before circle
+
+    # ── Eyebrow tag — draw ────────────────────────────────────────────────────
     # Chip border: team color at 50% opacity — matches softened badge treatment
     chip_layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
     chip_draw  = ImageDraw.Draw(chip_layer)
@@ -292,6 +305,18 @@ def generate_def_card(
     draw.rectangle(
         [ox, box_top - SCALE, ox + CARD_W, box_top],
         fill=C_HEADER_SEP,
+    )
+
+    # ── "RANK" column header — centered above the pill column ────────────────
+    col_header_font = load_font("rubik", "semibold", SZ_COL_HEADER)
+    ch_text = "RANK"
+    chbb    = draw.textbbox((0, 0), ch_text, font=col_header_font)
+    ch_w    = chbb[2] - chbb[0]
+    ch_cx   = px_pill_l + (PILL_W * SCALE) // 2
+    ch_y    = box_top + (COL_HEADER_H * SCALE - (chbb[3] - chbb[1])) // 2
+    draw.text(
+        (ch_cx - ch_w // 2, ch_y - chbb[1]),
+        ch_text, font=col_header_font, fill=C_SUBTITLE,
     )
 
     # ── Logo circle (team color ONLY here) ────────────────────────────────────

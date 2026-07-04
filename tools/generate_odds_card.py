@@ -43,8 +43,8 @@ C_TAG_BG    = "#1a1a1a"
 C_NAME      = "#ffffff"
 C_LABEL     = "#e0e0e0"
 C_VALUE     = "#ffffff"
-C_SUBTITLE  = "#7a7a7a"
-C_FOOTER    = "#7a7a7a"
+C_SUBTITLE  = "#999999"   # 6.6:1 on #111, was 4.4:1
+C_FOOTER    = "#999999"   # 6.6:1 on #111, was 4.4:1
 
 assert STYLE_VERSION == "clean_flat_v1" and C_PANEL is None, \
     "Panel fill must be None in clean_flat_v1"
