@@ -5952,10 +5952,10 @@
     }
   },
   "_meta": {
-    "scraped_at": "2026-08-25",
-    "season": 2025,
-    "nfl_week": null,
-    "season_type": "pre",
-    "weeks_included": "Full season"
+    "scraped_at": "2026-08-31",
+    "season": 2026,
+    "nfl_week": 1,
+    "season_type": "regular",
+    "weeks_included": "1\u20131"
   }
 }
