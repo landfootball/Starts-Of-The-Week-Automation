@@ -14,6 +14,8 @@ Requires:
     ODDS_API_KEY in .env (or Streamlit secrets in production)
 """
 
+from __future__ import annotations
+
 import json
 import os
 import sys

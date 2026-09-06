@@ -263,10 +263,11 @@ def _fetch_nfl_state() -> dict:
             "season": int(state.get("season", 2025)),
             "nfl_week": int(state.get("week", 1)),
             "season_type": state.get("season_type", "regular"),
+            "season_start_date": state.get("season_start_date"),
         }
     except Exception as e:
         print(f"  Warning: could not fetch NFL state from Sleeper ({e}). Using defaults.")
-        return {"season": 2025, "nfl_week": 1, "season_type": "regular"}
+        return {"season": 2025, "nfl_week": 1, "season_type": "regular", "season_start_date": None}
 
 
 def main() -> None:
@@ -283,7 +284,17 @@ def main() -> None:
     # Resolve the actual data season.
     # In the offseason Sleeper reports the UPCOMING season (e.g. 2026, week 0).
     # TeamRankings still shows the completed season's stats, so we step back one year.
-    is_offseason = nfl_state["season_type"] in ("off", "pre") or nfl_state["nfl_week"] == 0
+    # Sleeper also flips season_type to "regular" / week 1 a few days BEFORE kickoff
+    # (season_start_date), while TeamRankings still shows last season's final stats
+    # until games are actually played — so check the kickoff date too.
+    before_kickoff = False
+    if nfl_state.get("season_start_date"):
+        before_kickoff = date.today().isoformat() < nfl_state["season_start_date"]
+    is_offseason = (
+        nfl_state["season_type"] in ("off", "pre")
+        or nfl_state["nfl_week"] == 0
+        or before_kickoff
+    )
     if is_offseason:
         data_season = nfl_state["season"] - 1
         nfl_week = None          # no meaningful week to display

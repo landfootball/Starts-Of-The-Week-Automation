@@ -42,6 +42,8 @@ SCORING = {
     "two_pt_conversions": 2.0,
 }
 
+REGULAR_SEASON_WEEKS = 18
+
 # Minimum FPTS threshold to be considered "notable"
 MIN_FPTS = {
     "QB": 10.0,
@@ -87,14 +89,40 @@ def _get_nfl_state() -> dict:
     return resp.json()
 
 
+# Sleeper's old /schedule endpoint has been retired (404s for every season/week).
+# ESPN's public scoreboard API is the free, no-auth replacement for looking up
+# who played whom in a given week.
+ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+
+# Abbreviation mismatches between ESPN and Sleeper (which config/team_map.json
+# and the Sleeper player DB use).
+ESPN_TO_SLEEPER_ABBR = {"WSH": "WAS"}
+
+
 def _get_matchups(season: int, week: int) -> list[dict]:
-    """Get all matchup data for a given NFL week."""
-    url = f"{SLEEPER_BASE}/schedule/nfl/regular/{season}/{week}"
-    resp = requests.get(url, timeout=10)
+    """Get all matchup data for a given NFL week, as [{home_team, away_team}, ...]
+    using Sleeper team abbreviations."""
+    resp = requests.get(
+        ESPN_SCOREBOARD_URL,
+        params={"seasontype": 2, "week": week, "year": season},
+        timeout=10,
+    )
     if resp.status_code == 404:
         return []
     resp.raise_for_status()
-    return resp.json() or []
+    events = resp.json().get("events", [])
+
+    games = []
+    for event in events:
+        competitors = event["competitions"][0]["competitors"]
+        teams = {}
+        for c in competitors:
+            abbr = c["team"]["abbreviation"]
+            abbr = ESPN_TO_SLEEPER_ABBR.get(abbr, abbr)
+            teams[c["homeAway"]] = abbr
+        if "home" in teams and "away" in teams:
+            games.append({"home_team": teams["home"], "away_team": teams["away"]})
+    return games
 
 
 def _get_player_stats(season: int, week: int) -> dict:
@@ -188,22 +216,30 @@ def get_player_logs(
 
     # Get current season/week
     nfl_state = _get_nfl_state()
-    if season is None:
-        season = nfl_state.get("season", 2025)
-        try:
-            season = int(season)
-        except (TypeError, ValueError):
-            season = 2025
-
-    current_week = nfl_state.get("week", 1)
+    live_season = nfl_state.get("season", 2025)
     try:
-        current_week = int(current_week)
+        live_season = int(live_season)
     except (TypeError, ValueError):
-        current_week = 1
+        live_season = 2025
 
-    # Weeks to check: last N completed weeks
-    start_week = max(1, current_week - weeks)
-    week_range = list(range(start_week, current_week))
+    if season is None:
+        season = live_season
+
+    if season < live_season:
+        # A fully-completed past season (e.g. referencing 2025 while 2026 has no
+        # games yet) — scan the whole regular season instead of a recency window
+        # anchored to the LIVE season's current week, which would be wrong here.
+        week_range = list(range(1, REGULAR_SEASON_WEEKS + 1))
+    else:
+        current_week = nfl_state.get("week", 1)
+        try:
+            current_week = int(current_week)
+        except (TypeError, ValueError):
+            current_week = 1
+
+        # Weeks to check: last N completed weeks
+        start_week = max(1, current_week - weeks)
+        week_range = list(range(start_week, current_week))
 
     if not week_range:
         return []
