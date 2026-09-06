@@ -23,6 +23,7 @@ SCALE = 2
 CARD_W = 500 * SCALE        # 1000px
 OUTER_PAD = 32 * SCALE      # 64px
 # CARD_H is dynamic — calculated per card based on content
+CARD_RADIUS = 18 * SCALE    # outer card corner radius (used by make_card_canvas + finalize_card)
 
 # ── Palette — designer template v1 ────────────────────────────────────────────
 BG_DARK       = "#0a0a0a"   # outer canvas (true near-black, no blue tint)
@@ -363,11 +364,31 @@ def make_card_canvas(card_h: int, card_bg: str = CARD_BG) -> tuple[Image.Image, 
     img = Image.new("RGB", (img_w, img_h), BG_DARK)
     draw = ImageDraw.Draw(img)
 
-    CARD_RADIUS = 18 * SCALE
     card_rect = [OUTER_PAD, OUTER_PAD, OUTER_PAD + CARD_W, OUTER_PAD + card_h]
     draw.rounded_rectangle(card_rect, radius=CARD_RADIUS, fill=card_bg)
 
     return img, draw, (OUTER_PAD, OUTER_PAD)
+
+
+def finalize_card(
+    img: Image.Image,
+    ox: int,
+    oy: int,
+    card_w: int,
+    card_h: int,
+    radius: int,
+) -> Image.Image:
+    """
+    Crop away the outer canvas margin and make everything outside the card's
+    rounded-rectangle silhouette transparent (alpha 0), so the exported PNG
+    drops straight onto a video timeline with no black backing square or
+    square corners showing through the rounded edges.
+    """
+    cropped = img.crop((ox, oy, ox + card_w, oy + card_h)).convert("RGBA")
+    mask = Image.new("L", cropped.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, card_w, card_h], radius=radius, fill=255)
+    cropped.putalpha(mask)
+    return cropped
 
 
 def draw_rank_pill(

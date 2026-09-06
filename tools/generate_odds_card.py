@@ -23,7 +23,7 @@ from card_utils import (
     load_font, rank_color, rank_bg_color, ordinal, hex_to_rgb,
     load_team_map, load_fantasylan_watermark,
     draw_rank_pill, draw_logo_circle,
-    build_token_map, draw_radial_glow,
+    build_token_map, draw_radial_glow, finalize_card,
 )
 from PIL import Image, ImageDraw
 
@@ -338,5 +338,6 @@ def generate_odds_card(
     if output_path is None:
         safe = off_team_name.lower().replace(" ", "_")
         output_path = OUTPUT_DIR / f"{safe}_odds_card_{date.today()}.png"
+    img = finalize_card(img, ox, oy, CARD_W, card_h, radius=BOX_RADIUS * SCALE)
     img.save(str(output_path), "PNG")
     return output_path

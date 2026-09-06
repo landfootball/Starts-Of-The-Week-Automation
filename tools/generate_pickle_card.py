@@ -34,8 +34,9 @@ sys.path.insert(0, str(ROOT / "tools"))
 from card_utils import (
     CARD_W, OUTER_PAD, SCALE,
     CARD_BG, CARD_BG_ALT, DIVIDER, GRAY_LABEL, GRAY_SUBTITLE, BLACK, WHITE,
+    CARD_RADIUS as CARD_OUTER_RADIUS,
     load_font, load_team_map, load_team_logo, load_fantasylan_watermark,
-    make_card_canvas, draw_pill_badge, draw_divider,
+    make_card_canvas, draw_pill_badge, draw_divider, finalize_card,
 )
 
 OUTPUT_DIR = ROOT / "output"
@@ -244,5 +245,6 @@ def generate_pickle_card(
         safe_off = off_team_name.lower().replace(" ", "_")
         output_path = OUTPUT_DIR / f"{safe_off}_vs_{safe_def}_{position}_pickle_{date.today()}.png"
 
+    img = finalize_card(img, cx, cy, CARD_W, card_h, radius=CARD_OUTER_RADIUS)
     img.save(str(output_path), "PNG")
     return output_path
