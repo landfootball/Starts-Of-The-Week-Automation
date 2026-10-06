@@ -7,7 +7,7 @@
     },
     "RB": {
       "avg": 16.2,
-      "rank": 28,
+      "rank": 29,
       "games": 4
     },
     "WR": {
@@ -17,30 +17,30 @@
     },
     "TE": {
       "avg": 18.6,
-      "rank": 5,
+      "rank": 4,
       "games": 4
     }
   },
   "Atlanta Falcons": {
     "QB": {
-      "avg": 21.6,
-      "rank": 10,
-      "games": 3
+      "avg": 20.9,
+      "rank": 15,
+      "games": 4
     },
     "RB": {
-      "avg": 13.5,
-      "rank": 32,
-      "games": 3
+      "avg": 17.9,
+      "rank": 24,
+      "games": 4
     },
     "WR": {
-      "avg": 38.5,
+      "avg": 38.4,
       "rank": 5,
-      "games": 3
+      "games": 4
     },
     "TE": {
-      "avg": 17.2,
-      "rank": 10,
-      "games": 3
+      "avg": 15.9,
+      "rank": 12,
+      "games": 4
     }
   },
   "Baltimore Ravens": {
@@ -78,7 +78,7 @@
     },
     "WR": {
       "avg": 41.0,
-      "rank": 2,
+      "rank": 3,
       "games": 4
     },
     "TE": {
@@ -89,24 +89,24 @@
   },
   "Carolina Panthers": {
     "QB": {
-      "avg": 23.5,
-      "rank": 8,
-      "games": 3
+      "avg": 23.8,
+      "rank": 7,
+      "games": 4
     },
     "RB": {
-      "avg": 30.5,
-      "rank": 1,
-      "games": 3
+      "avg": 28.0,
+      "rank": 5,
+      "games": 4
     },
     "WR": {
-      "avg": 23.2,
-      "rank": 29,
-      "games": 3
+      "avg": 28.7,
+      "rank": 24,
+      "games": 4
     },
     "TE": {
-      "avg": 14.0,
-      "rank": 15,
-      "games": 3
+      "avg": 16.6,
+      "rank": 11,
+      "games": 4
     }
   },
   "Chicago Bears": {
@@ -117,12 +117,12 @@
     },
     "RB": {
       "avg": 17.4,
-      "rank": 25,
+      "rank": 26,
       "games": 4
     },
     "WR": {
       "avg": 25.9,
-      "rank": 27,
+      "rank": 28,
       "games": 4
     },
     "TE": {
@@ -139,17 +139,17 @@
     },
     "RB": {
       "avg": 19.8,
-      "rank": 19,
+      "rank": 20,
       "games": 4
     },
     "WR": {
       "avg": 29.1,
-      "rank": 20,
+      "rank": 21,
       "games": 4
     },
     "TE": {
       "avg": 18.0,
-      "rank": 8,
+      "rank": 7,
       "games": 4
     }
   },
@@ -161,7 +161,7 @@
     },
     "RB": {
       "avg": 16.7,
-      "rank": 27,
+      "rank": 28,
       "games": 4
     },
     "WR": {
@@ -171,7 +171,7 @@
     },
     "TE": {
       "avg": 16.8,
-      "rank": 11,
+      "rank": 10,
       "games": 4
     }
   },
@@ -193,14 +193,14 @@
     },
     "TE": {
       "avg": 15.3,
-      "rank": 13,
+      "rank": 14,
       "games": 4
     }
   },
   "Denver Broncos": {
     "QB": {
       "avg": 21.5,
-      "rank": 12,
+      "rank": 11,
       "games": 4
     },
     "RB": {
@@ -210,35 +210,35 @@
     },
     "WR": {
       "avg": 28.3,
-      "rank": 24,
+      "rank": 25,
       "games": 4
     },
     "TE": {
       "avg": 15.5,
-      "rank": 12,
+      "rank": 13,
       "games": 4
     }
   },
   "Detroit Lions": {
     "QB": {
-      "avg": 35.3,
+      "avg": 32.7,
       "rank": 1,
-      "games": 3
+      "games": 4
     },
     "RB": {
-      "avg": 19.7,
-      "rank": 20,
-      "games": 3
+      "avg": 21.7,
+      "rank": 15,
+      "games": 4
     },
     "WR": {
-      "avg": 39.0,
-      "rank": 4,
-      "games": 3
+      "avg": 43.5,
+      "rank": 2,
+      "games": 4
     },
     "TE": {
-      "avg": 33.4,
+      "avg": 28.4,
       "rank": 1,
-      "games": 3
+      "games": 4
     }
   },
   "Green Bay Packers": {
@@ -266,12 +266,12 @@
   "Houston Texans": {
     "QB": {
       "avg": 23.7,
-      "rank": 7,
+      "rank": 8,
       "games": 4
     },
     "RB": {
       "avg": 17.3,
-      "rank": 26,
+      "rank": 27,
       "games": 4
     },
     "WR": {
@@ -310,12 +310,12 @@
   "Jacksonville Jaguars": {
     "QB": {
       "avg": 20.6,
-      "rank": 18,
+      "rank": 17,
       "games": 4
     },
     "RB": {
       "avg": 17.8,
-      "rank": 24,
+      "rank": 25,
       "games": 4
     },
     "WR": {
@@ -354,29 +354,29 @@
   "Las Vegas Raiders": {
     "QB": {
       "avg": 21.6,
-      "rank": 11,
+      "rank": 10,
       "games": 4
     },
     "RB": {
       "avg": 21.6,
-      "rank": 15,
+      "rank": 16,
       "games": 4
     },
     "WR": {
       "avg": 27.4,
-      "rank": 26,
+      "rank": 27,
       "games": 4
     },
     "TE": {
       "avg": 18.1,
-      "rank": 7,
+      "rank": 6,
       "games": 4
     }
   },
   "Los Angeles Chargers": {
     "QB": {
       "avg": 21.4,
-      "rank": 13,
+      "rank": 12,
       "games": 4
     },
     "RB": {
@@ -403,12 +403,12 @@
     },
     "RB": {
       "avg": 15.5,
-      "rank": 30,
+      "rank": 31,
       "games": 4
     },
     "WR": {
       "avg": 29.3,
-      "rank": 19,
+      "rank": 20,
       "games": 4
     },
     "TE": {
@@ -420,7 +420,7 @@
   "Miami Dolphins": {
     "QB": {
       "avg": 21.2,
-      "rank": 15,
+      "rank": 14,
       "games": 4
     },
     "RB": {
@@ -435,7 +435,7 @@
     },
     "TE": {
       "avg": 18.6,
-      "rank": 6,
+      "rank": 5,
       "games": 4
     }
   },
@@ -447,7 +447,7 @@
     },
     "RB": {
       "avg": 14.7,
-      "rank": 31,
+      "rank": 32,
       "games": 4
     },
     "WR": {
@@ -469,7 +469,7 @@
     },
     "RB": {
       "avg": 19.9,
-      "rank": 18,
+      "rank": 19,
       "games": 4
     },
     "WR": {
@@ -485,30 +485,30 @@
   },
   "New Orleans Saints": {
     "QB": {
-      "avg": 20.8,
-      "rank": 17,
-      "games": 3
+      "avg": 19.3,
+      "rank": 19,
+      "games": 4
     },
     "RB": {
-      "avg": 27.9,
-      "rank": 5,
-      "games": 3
+      "avg": 34.3,
+      "rank": 1,
+      "games": 4
     },
     "WR": {
-      "avg": 29.0,
-      "rank": 22,
-      "games": 3
+      "avg": 29.5,
+      "rank": 19,
+      "games": 4
     },
     "TE": {
-      "avg": 20.7,
-      "rank": 3,
-      "games": 3
+      "avg": 17.9,
+      "rank": 9,
+      "games": 4
     }
   },
   "New York Giants": {
     "QB": {
       "avg": 20.4,
-      "rank": 19,
+      "rank": 18,
       "games": 4
     },
     "RB": {
@@ -523,7 +523,7 @@
     },
     "TE": {
       "avg": 15.0,
-      "rank": 14,
+      "rank": 15,
       "games": 4
     }
   },
@@ -552,7 +552,7 @@
   "Philadelphia Eagles": {
     "QB": {
       "avg": 21.2,
-      "rank": 14,
+      "rank": 13,
       "games": 4
     },
     "RB": {
@@ -584,7 +584,7 @@
     },
     "WR": {
       "avg": 29.0,
-      "rank": 21,
+      "rank": 22,
       "games": 4
     },
     "TE": {
@@ -606,7 +606,7 @@
     },
     "WR": {
       "avg": 27.5,
-      "rank": 25,
+      "rank": 26,
       "games": 4
     },
     "TE": {
@@ -623,7 +623,7 @@
     },
     "RB": {
       "avg": 21.2,
-      "rank": 16,
+      "rank": 17,
       "games": 4
     },
     "WR": {
@@ -650,12 +650,12 @@
     },
     "WR": {
       "avg": 24.1,
-      "rank": 28,
+      "rank": 29,
       "games": 4
     },
     "TE": {
       "avg": 17.9,
-      "rank": 9,
+      "rank": 8,
       "games": 4
     }
   },
@@ -667,7 +667,7 @@
     },
     "RB": {
       "avg": 20.6,
-      "rank": 17,
+      "rank": 18,
       "games": 4
     },
     "WR": {
@@ -689,22 +689,22 @@
     },
     "RB": {
       "avg": 15.8,
-      "rank": 29,
+      "rank": 30,
       "games": 4
     },
     "WR": {
       "avg": 40.2,
-      "rank": 3,
+      "rank": 4,
       "games": 4
     },
     "TE": {
       "avg": 19.1,
-      "rank": 4,
+      "rank": 3,
       "games": 4
     }
   },
   "_meta": {
-    "scraped_at": "2026-10-05",
+    "scraped_at": "2026-10-06",
     "season": 2026,
     "scoring": "PPR",
     "source": "fftoday.com (LeagueID=107644)"
