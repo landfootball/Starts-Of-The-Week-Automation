@@ -17,7 +17,7 @@
       "label": "Total Yards Allowed/G",
       "value": 337.3,
       "value_display": "337.3",
-      "rank": 16,
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -62,7 +62,7 @@
       "label": "Pass TDs Allowed/G",
       "value": 2.1,
       "value_display": "2.1",
-      "rank": 4,
+      "rank": 3,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -105,7 +105,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 40.74,
       "value_display": "40.74%",
-      "rank": 14,
+      "rank": 13,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -190,7 +190,7 @@
       "label": "Points Allowed/G",
       "value": 24.8,
       "value_display": "24.8",
-      "rank": 14,
+      "rank": 13,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -203,7 +203,7 @@
       "label": "Total Yards Allowed/G",
       "value": 346.8,
       "value_display": "346.8",
-      "rank": 11,
+      "rank": 10,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -228,7 +228,7 @@
       "label": "Rush Yards Allowed/G",
       "value": 118.8,
       "value_display": "118.8",
-      "rank": 15,
+      "rank": 16,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -238,7 +238,7 @@
       "label": "Yards/Carry Allowed",
       "value": 4.4,
       "value_display": "4.4",
-      "rank": 12,
+      "rank": 11,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -270,7 +270,7 @@
       "label": "Completions Allowed/G",
       "value": 23.3,
       "value_display": "23.3",
-      "rank": 6,
+      "rank": 5,
       "higher_is_better": true,
       "positions": [
         "WR",
@@ -281,7 +281,7 @@
       "label": "Yards/Pass Attempt Allowed",
       "value": 6.5,
       "value_display": "6.5",
-      "rank": 20,
+      "rank": 19,
       "higher_is_better": true,
       "positions": [
         "QB"
@@ -304,7 +304,7 @@
       "label": "Passer Rating Allowed",
       "value": 96.3,
       "value_display": "96.3",
-      "rank": 12,
+      "rank": 11,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -336,7 +336,7 @@
       "label": "Red Zone TD% Allowed",
       "value": 64.71,
       "value_display": "64.71%",
-      "rank": 14,
+      "rank": 13,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -361,7 +361,7 @@
       "label": "Total TDs Allowed/G",
       "value": 2.9,
       "value_display": "2.9",
-      "rank": 11,
+      "rank": 10,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -477,7 +477,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 38.98,
       "value_display": "38.98%",
-      "rank": 19,
+      "rank": 18,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -490,7 +490,7 @@
       "label": "Passer Rating Allowed",
       "value": 96.1,
       "value_display": "96.1",
-      "rank": 13,
+      "rank": 12,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -547,7 +547,7 @@
       "label": "Total TDs Allowed/G",
       "value": 2.8,
       "value_display": "2.8",
-      "rank": 13,
+      "rank": 12,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -560,9 +560,9 @@
   "Buffalo Bills": {
     "opponent-points-per-game": {
       "label": "Points Allowed/G",
-      "value": 25.9,
-      "value_display": "25.9",
-      "rank": 9,
+      "value": 23.4,
+      "value_display": "23.4",
+      "rank": 17,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -573,9 +573,9 @@
     },
     "opponent-yards-per-game": {
       "label": "Total Yards Allowed/G",
-      "value": 352.1,
-      "value_display": "352.1",
-      "rank": 10,
+      "value": 330.4,
+      "value_display": "330.4",
+      "rank": 17,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -586,9 +586,9 @@
     },
     "opponent-passing-yards-per-game": {
       "label": "Pass Yards Allowed/G",
-      "value": 254.7,
-      "value_display": "254.7",
-      "rank": 3,
+      "value": 238.8,
+      "value_display": "238.8",
+      "rank": 4,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -598,9 +598,9 @@
     },
     "opponent-rushing-yards-per-game": {
       "label": "Rush Yards Allowed/G",
-      "value": 97.4,
-      "value_display": "97.4",
-      "rank": 24,
+      "value": 91.6,
+      "value_display": "91.6",
+      "rank": 26,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -610,7 +610,7 @@
       "label": "Yards/Carry Allowed",
       "value": 3.9,
       "value_display": "3.9",
-      "rank": 24,
+      "rank": 23,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -618,9 +618,9 @@
     },
     "opponent-passing-touchdowns-per-game": {
       "label": "Pass TDs Allowed/G",
-      "value": 2.1,
-      "value_display": "2.1",
-      "rank": 3,
+      "value": 1.9,
+      "value_display": "1.9",
+      "rank": 6,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -630,9 +630,9 @@
     },
     "opponent-rushing-touchdowns-per-game": {
       "label": "Rush TDs Allowed/G",
-      "value": 1.0,
-      "value_display": "1.0",
-      "rank": 16,
+      "value": 0.9,
+      "value_display": "0.9",
+      "rank": 21,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -640,9 +640,9 @@
     },
     "opponent-completions-per-game": {
       "label": "Completions Allowed/G",
-      "value": 24.1,
-      "value_display": "24.1",
-      "rank": 3,
+      "value": 22.9,
+      "value_display": "22.9",
+      "rank": 8,
       "higher_is_better": true,
       "positions": [
         "WR",
@@ -651,9 +651,9 @@
     },
     "opponent-yards-per-pass-attempt": {
       "label": "Yards/Pass Attempt Allowed",
-      "value": 6.7,
-      "value_display": "6.7",
-      "rank": 17,
+      "value": 6.4,
+      "value_display": "6.4",
+      "rank": 20,
       "higher_is_better": true,
       "positions": [
         "QB"
@@ -661,9 +661,9 @@
     },
     "opponent-third-down-conversion-pct": {
       "label": "3rd Down Conv % Allowed",
-      "value": 41.94,
-      "value_display": "41.94%",
-      "rank": 11,
+      "value": 38.61,
+      "value_display": "38.61%",
+      "rank": 20,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -674,9 +674,9 @@
     },
     "opponent-average-team-passer-rating": {
       "label": "Passer Rating Allowed",
-      "value": 96.3,
-      "value_display": "96.3",
-      "rank": 11,
+      "value": 89.3,
+      "value_display": "89.3",
+      "rank": 18,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -696,9 +696,9 @@
     },
     "interceptions-per-game": {
       "label": "INTs Forced/G (defense)",
-      "value": 0.6,
-      "value_display": "0.6",
-      "rank": 22,
+      "value": 0.8,
+      "value_display": "0.8",
+      "rank": 13,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -706,9 +706,9 @@
     },
     "opponent-red-zone-scoring-pct": {
       "label": "Red Zone TD% Allowed",
-      "value": 65.52,
-      "value_display": "65.52%",
-      "rank": 13,
+      "value": 63.33,
+      "value_display": "63.33%",
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -719,9 +719,9 @@
     },
     "opponent-pass-attempts-per-game": {
       "label": "Pass Attempts Allowed/G",
-      "value": 38.3,
-      "value_display": "38.3",
-      "rank": 2,
+      "value": 37.5,
+      "value_display": "37.5",
+      "rank": 3,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -731,9 +731,9 @@
     },
     "opponent-touchdowns-per-game": {
       "label": "Total TDs Allowed/G",
-      "value": 3.1,
-      "value_display": "3.1",
-      "rank": 4,
+      "value": 2.8,
+      "value_display": "2.8",
+      "rank": 14,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -761,7 +761,7 @@
       "label": "Total Yards Allowed/G",
       "value": 344.9,
       "value_display": "344.9",
-      "rank": 12,
+      "rank": 11,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -884,7 +884,7 @@
       "label": "INTs Forced/G (defense)",
       "value": 0.6,
       "value_display": "0.6",
-      "rank": 18,
+      "rank": 19,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -982,7 +982,7 @@
       "label": "Yards/Carry Allowed",
       "value": 4.4,
       "value_display": "4.4",
-      "rank": 11,
+      "rank": 10,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -1004,7 +1004,7 @@
       "label": "Rush TDs Allowed/G",
       "value": 0.9,
       "value_display": "0.9",
-      "rank": 19,
+      "rank": 18,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -1048,7 +1048,7 @@
       "label": "Passer Rating Allowed",
       "value": 93.1,
       "value_display": "93.1",
-      "rank": 17,
+      "rank": 16,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -1190,7 +1190,7 @@
       "label": "Rush TDs Allowed/G",
       "value": 1.0,
       "value_display": "1.0",
-      "rank": 16,
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -1256,7 +1256,7 @@
       "label": "INTs Forced/G (defense)",
       "value": 0.6,
       "value_display": "0.6",
-      "rank": 18,
+      "rank": 19,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -1319,7 +1319,7 @@
       "label": "Total Yards Allowed/G",
       "value": 331.6,
       "value_display": "331.6",
-      "rank": 17,
+      "rank": 16,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -1376,7 +1376,7 @@
       "label": "Rush TDs Allowed/G",
       "value": 0.9,
       "value_display": "0.9",
-      "rank": 19,
+      "rank": 18,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -1407,7 +1407,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 39.37,
       "value_display": "39.37%",
-      "rank": 18,
+      "rank": 17,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -1442,7 +1442,7 @@
       "label": "INTs Forced/G (defense)",
       "value": 0.7,
       "value_display": "0.7",
-      "rank": 17,
+      "rank": 18,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -1663,7 +1663,7 @@
       "label": "Total TDs Allowed/G",
       "value": 3.0,
       "value_display": "3.0",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -1726,7 +1726,7 @@
       "label": "Yards/Carry Allowed",
       "value": 4.5,
       "value_display": "4.5",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -1758,7 +1758,7 @@
       "label": "Completions Allowed/G",
       "value": 23.0,
       "value_display": "23.0",
-      "rank": 7,
+      "rank": 6,
       "higher_is_better": true,
       "positions": [
         "WR",
@@ -1779,7 +1779,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 41.22,
       "value_display": "41.22%",
-      "rank": 13,
+      "rank": 12,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -1837,7 +1837,7 @@
       "label": "Pass Attempts Allowed/G",
       "value": 38.2,
       "value_display": "38.2",
-      "rank": 3,
+      "rank": 2,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -1864,7 +1864,7 @@
       "label": "Points Allowed/G",
       "value": 23.6,
       "value_display": "23.6",
-      "rank": 17,
+      "rank": 16,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -1902,7 +1902,7 @@
       "label": "Rush Yards Allowed/G",
       "value": 94.1,
       "value_display": "94.1",
-      "rank": 26,
+      "rank": 25,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -2035,7 +2035,7 @@
       "label": "Total TDs Allowed/G",
       "value": 3.0,
       "value_display": "3.0",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -2151,7 +2151,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 41.67,
       "value_display": "41.67%",
-      "rank": 12,
+      "rank": 11,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -2236,7 +2236,7 @@
       "label": "Points Allowed/G",
       "value": 24.0,
       "value_display": "24.0",
-      "rank": 16,
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -2249,7 +2249,7 @@
       "label": "Total Yards Allowed/G",
       "value": 338.6,
       "value_display": "338.6",
-      "rank": 15,
+      "rank": 14,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -2337,7 +2337,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 38.68,
       "value_display": "38.68%",
-      "rank": 20,
+      "rank": 19,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -2350,7 +2350,7 @@
       "label": "Passer Rating Allowed",
       "value": 95.3,
       "value_display": "95.3",
-      "rank": 16,
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -2492,7 +2492,7 @@
       "label": "Rush TDs Allowed/G",
       "value": 1.0,
       "value_display": "1.0",
-      "rank": 16,
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -2593,7 +2593,7 @@
       "label": "Total TDs Allowed/G",
       "value": 3.0,
       "value_display": "3.0",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -2678,7 +2678,7 @@
       "label": "Rush TDs Allowed/G",
       "value": 0.6,
       "value_display": "0.6",
-      "rank": 27,
+      "rank": 28,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -2864,7 +2864,7 @@
       "label": "Rush TDs Allowed/G",
       "value": 0.6,
       "value_display": "0.6",
-      "rank": 27,
+      "rank": 28,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -3179,7 +3179,7 @@
       "label": "Total Yards Allowed/G",
       "value": 343.3,
       "value_display": "343.3",
-      "rank": 13,
+      "rank": 12,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3280,7 +3280,7 @@
       "label": "Passer Rating Allowed",
       "value": 95.9,
       "value_display": "95.9",
-      "rank": 14,
+      "rank": 13,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3325,7 +3325,7 @@
       "label": "Pass Attempts Allowed/G",
       "value": 29.1,
       "value_display": "29.1",
-      "rank": 28,
+      "rank": 29,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3337,7 +3337,7 @@
       "label": "Total TDs Allowed/G",
       "value": 3.0,
       "value_display": "3.0",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3538,7 +3538,7 @@
       "label": "Points Allowed/G",
       "value": 25.0,
       "value_display": "25.0",
-      "rank": 11,
+      "rank": 10,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3596,7 +3596,7 @@
       "label": "Pass TDs Allowed/G",
       "value": 2.0,
       "value_display": "2.0",
-      "rank": 6,
+      "rank": 5,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3674,7 +3674,7 @@
       "label": "INTs Forced/G (defense)",
       "value": 0.6,
       "value_display": "0.6",
-      "rank": 18,
+      "rank": 19,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -3722,8 +3722,8 @@
   "Minnesota Vikings": {
     "opponent-points-per-game": {
       "label": "Points Allowed/G",
-      "value": 13.3,
-      "value_display": "13.3",
+      "value": 14.5,
+      "value_display": "14.5",
       "rank": 32,
       "higher_is_better": true,
       "positions": [
@@ -3735,8 +3735,8 @@
     },
     "opponent-yards-per-game": {
       "label": "Total Yards Allowed/G",
-      "value": 271.6,
-      "value_display": "271.6",
+      "value": 280.0,
+      "value_display": "280.0",
       "rank": 31,
       "higher_is_better": true,
       "positions": [
@@ -3748,9 +3748,9 @@
     },
     "opponent-passing-yards-per-game": {
       "label": "Pass Yards Allowed/G",
-      "value": 154.9,
-      "value_display": "154.9",
-      "rank": 32,
+      "value": 161.1,
+      "value_display": "161.1",
+      "rank": 31,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3760,9 +3760,9 @@
     },
     "opponent-rushing-yards-per-game": {
       "label": "Rush Yards Allowed/G",
-      "value": 116.7,
-      "value_display": "116.7",
-      "rank": 16,
+      "value": 118.9,
+      "value_display": "118.9",
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -3770,9 +3770,9 @@
     },
     "opponent-yards-per-rush-attempt": {
       "label": "Yards/Carry Allowed",
-      "value": 4.5,
-      "value_display": "4.5",
-      "rank": 8,
+      "value": 4.2,
+      "value_display": "4.2",
+      "rank": 12,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -3802,8 +3802,8 @@
     },
     "opponent-completions-per-game": {
       "label": "Completions Allowed/G",
-      "value": 16.3,
-      "value_display": "16.3",
+      "value": 16.9,
+      "value_display": "16.9",
       "rank": 32,
       "higher_is_better": true,
       "positions": [
@@ -3813,8 +3813,8 @@
     },
     "opponent-yards-per-pass-attempt": {
       "label": "Yards/Pass Attempt Allowed",
-      "value": 5.3,
-      "value_display": "5.3",
+      "value": 5.5,
+      "value_display": "5.5",
       "rank": 31,
       "higher_is_better": true,
       "positions": [
@@ -3823,9 +3823,9 @@
     },
     "opponent-third-down-conversion-pct": {
       "label": "3rd Down Conv % Allowed",
-      "value": 29.67,
-      "value_display": "29.67%",
-      "rank": 31,
+      "value": 31.19,
+      "value_display": "31.19%",
+      "rank": 30,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3836,8 +3836,8 @@
     },
     "opponent-average-team-passer-rating": {
       "label": "Passer Rating Allowed",
-      "value": 64.9,
-      "value_display": "64.9",
+      "value": 67.9,
+      "value_display": "67.9",
       "rank": 32,
       "higher_is_better": true,
       "positions": [
@@ -3850,7 +3850,7 @@
       "label": "Sacks/G (defense)",
       "value": 3.6,
       "value_display": "3.6",
-      "rank": 2,
+      "rank": 1,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -3868,8 +3868,8 @@
     },
     "opponent-red-zone-scoring-pct": {
       "label": "Red Zone TD% Allowed",
-      "value": 25.0,
-      "value_display": "25.00%",
+      "value": 26.32,
+      "value_display": "26.32%",
       "rank": 32,
       "higher_is_better": true,
       "positions": [
@@ -3881,9 +3881,9 @@
     },
     "opponent-pass-attempts-per-game": {
       "label": "Pass Attempts Allowed/G",
-      "value": 29.0,
-      "value_display": "29.0",
-      "rank": 29,
+      "value": 29.3,
+      "value_display": "29.3",
+      "rank": 28,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -3893,8 +3893,8 @@
     },
     "opponent-touchdowns-per-game": {
       "label": "Total TDs Allowed/G",
-      "value": 1.3,
-      "value_display": "1.3",
+      "value": 1.4,
+      "value_display": "1.4",
       "rank": 32,
       "higher_is_better": true,
       "positions": [
@@ -3948,7 +3948,7 @@
       "label": "Rush Yards Allowed/G",
       "value": 96.7,
       "value_display": "96.7",
-      "rank": 25,
+      "rank": 24,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -3958,7 +3958,7 @@
       "label": "Yards/Carry Allowed",
       "value": 3.9,
       "value_display": "3.9",
-      "rank": 23,
+      "rank": 24,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -3980,7 +3980,7 @@
       "label": "Rush TDs Allowed/G",
       "value": 0.9,
       "value_display": "0.9",
-      "rank": 19,
+      "rank": 18,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -4144,7 +4144,7 @@
       "label": "Yards/Carry Allowed",
       "value": 4.5,
       "value_display": "4.5",
-      "rank": 9,
+      "rank": 8,
       "higher_is_better": true,
       "positions": [
         "RB"
@@ -4267,7 +4267,7 @@
       "label": "Total TDs Allowed/G",
       "value": 3.0,
       "value_display": "3.0",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -4468,7 +4468,7 @@
       "label": "Points Allowed/G",
       "value": 24.8,
       "value_display": "24.8",
-      "rank": 14,
+      "rank": 13,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -4559,7 +4559,7 @@
       "label": "Yards/Pass Attempt Allowed",
       "value": 6.6,
       "value_display": "6.6",
-      "rank": 18,
+      "rank": 17,
       "higher_is_better": true,
       "positions": [
         "QB"
@@ -4639,7 +4639,7 @@
       "label": "Total TDs Allowed/G",
       "value": 3.0,
       "value_display": "3.0",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -4654,7 +4654,7 @@
       "label": "Points Allowed/G",
       "value": 24.6,
       "value_display": "24.6",
-      "rank": 15,
+      "rank": 14,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -4755,7 +4755,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 40.6,
       "value_display": "40.60%",
-      "rank": 15,
+      "rank": 14,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -4768,7 +4768,7 @@
       "label": "Passer Rating Allowed",
       "value": 92.2,
       "value_display": "92.2",
-      "rank": 18,
+      "rank": 17,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5106,7 +5106,7 @@
       "label": "Completions Allowed/G",
       "value": 23.5,
       "value_display": "23.5",
-      "rank": 5,
+      "rank": 4,
       "higher_is_better": true,
       "positions": [
         "WR",
@@ -5127,7 +5127,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 40.38,
       "value_display": "40.38%",
-      "rank": 16,
+      "rank": 15,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5238,7 +5238,7 @@
       "label": "Pass Yards Allowed/G",
       "value": 155.1,
       "value_display": "155.1",
-      "rank": 31,
+      "rank": 32,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5313,7 +5313,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 30.58,
       "value_display": "30.58%",
-      "rank": 30,
+      "rank": 31,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5584,7 +5584,7 @@
       "label": "Points Allowed/G",
       "value": 24.9,
       "value_display": "24.9",
-      "rank": 12,
+      "rank": 11,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5664,7 +5664,7 @@
       "label": "Completions Allowed/G",
       "value": 24.1,
       "value_display": "24.1",
-      "rank": 4,
+      "rank": 3,
       "higher_is_better": true,
       "positions": [
         "WR",
@@ -5698,7 +5698,7 @@
       "label": "Passer Rating Allowed",
       "value": 95.9,
       "value_display": "95.9",
-      "rank": 15,
+      "rank": 14,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5730,7 +5730,7 @@
       "label": "Red Zone TD% Allowed",
       "value": 64.52,
       "value_display": "64.52%",
-      "rank": 15,
+      "rank": 14,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5770,7 +5770,7 @@
       "label": "Points Allowed/G",
       "value": 25.3,
       "value_display": "25.3",
-      "rank": 10,
+      "rank": 9,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5783,7 +5783,7 @@
       "label": "Total Yards Allowed/G",
       "value": 342.3,
       "value_display": "342.3",
-      "rank": 14,
+      "rank": 13,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5796,7 +5796,7 @@
       "label": "Pass Yards Allowed/G",
       "value": 240.0,
       "value_display": "240.0",
-      "rank": 4,
+      "rank": 3,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5828,7 +5828,7 @@
       "label": "Pass TDs Allowed/G",
       "value": 2.0,
       "value_display": "2.0",
-      "rank": 6,
+      "rank": 5,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5861,7 +5861,7 @@
       "label": "Yards/Pass Attempt Allowed",
       "value": 6.5,
       "value_display": "6.5",
-      "rank": 19,
+      "rank": 18,
       "higher_is_better": true,
       "positions": [
         "QB"
@@ -5871,7 +5871,7 @@
       "label": "3rd Down Conv % Allowed",
       "value": 40.0,
       "value_display": "40.00%",
-      "rank": 17,
+      "rank": 16,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5896,7 +5896,7 @@
       "label": "Sacks/G (defense)",
       "value": 2.1,
       "value_display": "2.1",
-      "rank": 17,
+      "rank": 16,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -5906,7 +5906,7 @@
       "label": "INTs Forced/G (defense)",
       "value": 0.6,
       "value_display": "0.6",
-      "rank": 18,
+      "rank": 19,
       "higher_is_better": false,
       "positions": [
         "QB"
@@ -5941,7 +5941,7 @@
       "label": "Total TDs Allowed/G",
       "value": 2.9,
       "value_display": "2.9",
-      "rank": 12,
+      "rank": 11,
       "higher_is_better": true,
       "positions": [
         "QB",
@@ -5952,10 +5952,10 @@
     }
   },
   "_meta": {
-    "scraped_at": "2026-11-09",
+    "scraped_at": "2026-11-10",
     "season": 2026,
-    "nfl_week": 9,
+    "nfl_week": 10,
     "season_type": "regular",
-    "weeks_included": "1\u20139"
+    "weeks_included": "1\u201310"
   }
 }
